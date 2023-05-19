@@ -1,5 +1,5 @@
 
-set all&
+" set all&
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
