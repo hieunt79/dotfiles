@@ -110,7 +110,7 @@ nnoremap <expr> <leader>w &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 " Reload config
 noremap <leader>r :so ~/.vim/vimrc.hieunt<CR>
 " noremap <leader>R :so ~/.vim/vimrc.local<CR>
-noremap <leader>R :so ~/.vim/vimrc.local<CR>
+noremap <leader>R :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
