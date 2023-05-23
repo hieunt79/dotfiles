@@ -23,7 +23,7 @@ autocmd InsertEnter,WinLeave * set nocursorline
 
 set wrapscan               " Searches wrap around end-of-file.
 set report      =0         " Always report changed lines.
-set synmaxcol   =200       " Only highlight the first 200 columns.
+"set synmaxcol   =200       " Only highlight the first 200 columns.
 
 " add mouse support
 "set mouse=a
