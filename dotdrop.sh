@@ -16,6 +16,8 @@ if [ "${DOTDROP_AUTOUPDATE-yes}" = yes ] ; then
   git submodule update --remote dotdrop
 fi
 
+pip install -r dotdrop/requirements.txt
+
 # check python executable
 pybin="python3"
 hash ${pybin} 2>/dev/null || pybin="python"
