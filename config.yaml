@@ -1,17 +1,20 @@
 config:
-  backup: true
+  backup: false
   banner: false
   create: true
   dotpath: dotfiles
 #  workdir: ~/.config/dotdrop
 dotfiles:
-  d_vimrc:
+  d_vimrc_desktop:
     dst: ~/.vim
-    src: vim
+    src: desktop_vimrc
+  d_vimrc_server:
+    dst: ~/.vim
+    src: server_vimrc
 profiles:
   desktop:
     dotfiles:
-    - d_vimrc
-  monlab:
+    - d_vimrc_desktop
+  server:
     dotfiles:
-    - d_vimrc
+    - d_vimrc_server
