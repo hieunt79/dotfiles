@@ -9,26 +9,28 @@ colorscheme default
 " Ref: https://stackoverflow.com/a/2159997
 set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
-set showmode               " Show current mode in command-line.
-set showcmd                " Show already typed keys when more are expected.
+set showmode                " Show current mode in command-line.
+set showcmd                 " Show already typed keys when more are expected.
 
-set splitbelow             " Open new windows below the current window.
-set splitright             " Open new windows right of the current window.
+set splitbelow              " Open new windows below the current window.
+set splitright              " Open new windows right of the current window.
 
-set cursorline             " Find the current line quickly.
+set cursorline              " Find the current line quickly.
 " smart set cursorline
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 
+set ruler                   " show cursor position
 
-set wrapscan               " Searches wrap around end-of-file.
-set report      =0         " Always report changed lines.
-"set synmaxcol   =200       " Only highlight the first 200 columns.
+set magic                   " For regular expressions turn magic on
 
-" add mouse support
-"set mouse=a
-" to disable mouse
-set mouse=
+set wrapscan                " Searches wrap around end-of-file.
+
+set report=0                " Always report changed lines.
+
+"set mouse=a                " To enable mouse support
+
+set mouse=                  " To disable mouse support
 
 " set highlight search
 set noswapfile " disable the swapfile
@@ -46,16 +48,33 @@ set undoreload=10000
 set scrolloff=9
 "set scrolloff=9999
 
+
+"-----------------------------------------------------------
+"        Status line
+"-----------------------------------------------------------
+" Always show the status line
+set laststatus=2
+
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+"-----------------------------------------------------------
+"        indentation and tab relate
+"-----------------------------------------------------------
 vnoremap < <gv
 vnoremap > >gv
 
+set autoindent              " Indent according to previous line.
+set smarttab                " Be smart when using tabs ;)
+set expandtab               " Use spaces instead of tabs.
 set tabstop=4
-set autoindent             " Indent according to previous line.
-set expandtab              " Use spaces instead of tabs.
-set softtabstop =4         " Tab key indents by 4 spaces.
-set shiftwidth  =4         " >> indents by 4 spaces.
-set shiftround             " >> indents to next multiple of 'shiftwidth'.
-""""i"
+set softtabstop =4          " Tab key indents by 4 spaces.
+set shiftwidth  =4          " >> indents by 4 spaces.
+set shiftround              " >> indents to next multiple of 'shiftwidth'.
+
+"-----------------------------------------------------------
+"        keymap custom
+"-----------------------------------------------------------
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
@@ -83,10 +102,10 @@ set relativenumber
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " tabnew
-noremap <leader>o :tabnew 
+noremap <leader>tn :tabnew 
 
 " set wrap on the fly
-set wrap
+set wrap    " set wrap on the fly
 nnoremap <expr> <leader>w &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
@@ -96,6 +115,10 @@ noremap <leader>R :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
+
+"-----------------------------------------------------------
+"        other config
+"-----------------------------------------------------------
 
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
