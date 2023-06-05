@@ -130,12 +130,13 @@ set wrap    " set wrap on the fly
 nnoremap <expr> <leader>w &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
-noremap <leader>r :so ~/.vim/server.vimrc<CR>
-" noremap <leader>R :so ~/.vim/vimrc.local<CR>
-noremap <leader>R :so ~/.vim/vimrc<CR>
+" noremap <leader>r :so ~/.vim/server.vimrc<CR>
+noremap <leader>r :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
+
+noremap <leader>rt :retab<cr>
 
 "-----------------------------------------------------------
 "        other config
