@@ -84,10 +84,6 @@ noremap <Leader>x :x<CR>
 
 " Disable paste for using supertab plugin
 set paste
-" set paste on the fly
-" noremap <leader>p :set paste<CR>
-" unset paste on the fly
-" noremap <leader>P :set nopaste<CR>
 nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
 " jump to next tab
@@ -115,6 +111,10 @@ noremap <leader>R :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
+
+noremap <leader>tr :retab<cr>
+
+noremap <leader>y :%y+<cr>
 
 "-----------------------------------------------------------
 "        other config
