@@ -78,7 +78,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
-noremap <Leader>s :w<CR>
+noremap <Leader>w :w<CR>
 noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
@@ -106,7 +106,7 @@ noremap <leader>tn :tabnew
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
-nnoremap <expr> <leader>w &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
+nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
 noremap <leader>r :so ~/.vim/server.vimrc<CR>
