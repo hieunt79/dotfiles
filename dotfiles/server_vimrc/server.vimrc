@@ -123,3 +123,4 @@ noremap <leader>y :%y+<cr>
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 set clipboard=unnamedplus
+set expandtab

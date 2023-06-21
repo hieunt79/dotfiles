@@ -86,10 +86,10 @@ noremap <leader>t gt
 " jump to previous tab
 noremap <leader>T gT
 
-set number
+"set number
 "" set adaptive toggle number
 nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
-set relativenumber
+"set relativenumber
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " tabnew
@@ -118,3 +118,4 @@ noremap <leader>y :%y+<cr>
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 set clipboard=unnamedplus
+set expandtab
