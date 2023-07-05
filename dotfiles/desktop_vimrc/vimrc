@@ -127,7 +127,7 @@ noremap <leader>r :so ~/.vim/vimrc<CR>
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
 
-noremap <leader>tr :retab<cr>
+noremap <leader>tr :set expandtab<cr>:retab<cr>
 
 noremap <leader>y :%y+<cr>
 
