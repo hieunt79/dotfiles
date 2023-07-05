@@ -1,7 +1,7 @@
 # README
 
 ```bash
-git clone https://github.com/hieunt79/dotfiles
+git clone
 cd dotfiles
 apt install python3-pip -y
 

@@ -78,16 +78,14 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
-noremap <Leader>s :w<CR>
+
+noremap <Leader>w :w<CR>
+
 noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
 " Disable paste for using supertab plugin
 set paste
-" set paste on the fly
-" noremap <leader>p :set paste<CR>
-" unset paste on the fly
-" noremap <leader>P :set nopaste<CR>
 nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
 " jump to next tab
@@ -106,7 +104,8 @@ noremap <leader>tn :tabnew
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
-nnoremap <expr> <leader>w &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
+
+nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
 noremap <leader>r :so ~/.vim/server.vimrc<CR>
@@ -116,6 +115,11 @@ noremap <leader>R :so ~/.vim/vimrc<CR>
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
 
+
+noremap <leader>tr :retab<cr>
+
+noremap <leader>y :%y+<cr>
+
 "-----------------------------------------------------------
 "        other config
 "-----------------------------------------------------------
@@ -123,3 +127,6 @@ inoremap <C-w> <C-g>u<C-w>
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 set clipboard=unnamedplus
+
+set expandtab
+
