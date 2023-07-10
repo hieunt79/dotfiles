@@ -1,6 +1,4 @@
 
-" set all&
-
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 colorscheme default
@@ -116,7 +114,7 @@ noremap <leader>R :so ~/.vim/vimrc<CR>
 inoremap <C-w> <C-g>u<C-w>
 
 
-noremap <leader>tr :retab<cr>
+noremap <leader>tr :set expandtab<cr>:retab<cr>
 
 noremap <leader>y :%y+<cr>
 
