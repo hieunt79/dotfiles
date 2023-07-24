@@ -92,7 +92,8 @@ nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 set number
 "" set adaptive toggle number
 nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
-set relativenumber
+"set relativenumber
+
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " tabnew
