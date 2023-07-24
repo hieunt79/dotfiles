@@ -99,9 +99,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
-
 noremap <Leader>w :w<cr>
-
 noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
@@ -121,7 +119,6 @@ noremap <leader>tn :tabnew
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
-
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
@@ -136,13 +133,23 @@ noremap <leader>tr :set expandtab<cr>:retab<cr>
 
 noremap <leader>y :%y+<cr>
 
+noremap <leader>tr :set expandtab<cr>:retab<cr>
+
+noremap <leader>y :%y+<cr>
+
+noremap <leader>tr :set expandtab<cr>:retab<cr>
+
+noremap <leader>y :%y+<cr>
+
+noremap <leader>E :vs.<cr>
+noremap <leader>e :Explore<cr>
 "-----------------------------------------------------------
 "        other config
 "-----------------------------------------------------------
 
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
-set clipboard=unnamedplus
-
+"set clipboard=unnamedplus
+" or you can direct use "+p
 set expandtab
 

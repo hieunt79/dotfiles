@@ -164,6 +164,9 @@ syntax keyword iptablesTarget
 syntax keyword iptablesBuiltinChain
     \ INPUT OUTPUT FORWARD PREROUTING POSTROUTING
 
+syntax keyword iptablesCustomChain
+    \ INPUT OUTPUT FORWARD PREROUTING POSTROUTING
+
 syntax keyword iptablesCommand -A -D -I -R -L -F -Z -N -X -P -E
     \ --append --delete --insert --replace --list --flush --zero
     \ --new-chain --delete-chain --policy --rename-chain
@@ -337,6 +340,7 @@ IptablesHiLink iptablesSaveOperation PreProc
 IptablesHiLink iptablesTable         Statement
 IptablesHiLink iptablesTarget        Statement
 IptablesHiLink iptablesBuiltinChain  Type
+IptablesHiLink iptablesCustomChain   Type
 
 IptablesHiLink iptablesCommand       Operator
 

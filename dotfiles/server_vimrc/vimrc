@@ -1,5 +1,8 @@
-"set all&
-set paste
+"-----------------------------------------------------------
+"        Plugins
+"-----------------------------------------------------------
+" You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
+" We set it explicitely to make our position clear!
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
@@ -14,6 +17,11 @@ set showcmd                 " Show already typed keys when more are expected.
 
 set splitbelow              " Open new windows below the current window.
 set splitright              " Open new windows right of the current window.
+
+set cursorline              " Find the current line quickly.
+" smart set cursorline
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
 
 set ruler                   " show cursor position
 
@@ -73,23 +81,15 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
-noremap <Leader>w :w<CR>
-
+noremap <Leader>w :w<cr>
 noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
 " Disable paste for using supertab plugin
 set paste
-
 nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
-" jump to next tab
-noremap <leader>t gt
-" jump to previous tab
-noremap <leader>T gT
-
-
-"set number
+set number
 "" set adaptive toggle number
 nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
 "set relativenumber
@@ -101,13 +101,11 @@ noremap <leader>tn :tabnew
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
-
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
-noremap <leader>r :so ~/.vim/server.vimrc<CR>
-" noremap <leader>R :so ~/.vim/vimrc.local<CR>
-noremap <leader>R :so ~/.vim/vimrc<CR>
+" noremap <leader>r :so ~/.vim/server.vimrc<CR>
+noremap <leader>r :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
@@ -116,13 +114,15 @@ noremap <leader>tr :set expandtab<cr>:retab<cr>
 
 noremap <leader>y :%y+<cr>
 
+noremap <leader>E :vs.<cr>
+noremap <leader>e :Explore<cr>
 "-----------------------------------------------------------
 "        other config
 "-----------------------------------------------------------
 
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
-set clipboard=unnamedplus
-
+"set clipboard=unnamedplus
+" or you can direct use "+p
 set expandtab
 
