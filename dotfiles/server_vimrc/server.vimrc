@@ -78,7 +78,9 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
+
 noremap <Leader>w :w<CR>
+
 noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
@@ -102,6 +104,7 @@ noremap <leader>tn :tabnew
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
+
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
@@ -111,6 +114,7 @@ noremap <leader>R :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
+
 
 noremap <leader>tr :retab<cr>
 
@@ -123,4 +127,6 @@ noremap <leader>y :%y+<cr>
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 set clipboard=unnamedplus
+
 set expandtab
+
