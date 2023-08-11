@@ -151,5 +151,8 @@ noremap <leader>e :Explore<cr>
 " then set below config, or easier install vim-gtk3.
 "set clipboard=unnamedplus
 " or you can direct use "+p
+noremap <leader>Y "+y
+noremap <leader>P "+p
+
 set expandtab
 
