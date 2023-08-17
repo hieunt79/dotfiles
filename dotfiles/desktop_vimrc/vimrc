@@ -79,7 +79,7 @@ set scrolloff=9
 set laststatus=2
 
 " Format the status line
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l\ \ Column:%c\ \ Filetype:%{&filetype}
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P\ \
 
 "-----------------------------------------------------------
 "        indentation and tab relate
@@ -153,5 +153,8 @@ noremap <leader>e :Explore<cr>
 " then set below config, or easier install vim-gtk3.
 "set clipboard=unnamedplus
 " or you can direct use "+p
+noremap <leader>Y "+y
+noremap <leader>P "+p
+
 set expandtab
 
