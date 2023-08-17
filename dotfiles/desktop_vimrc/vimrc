@@ -21,6 +21,8 @@ let g:vim_markdown_folding_disabled = 1
 
 call plug#end()
 
+set encoding=utf-8
+set fileencoding=utf-8
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.

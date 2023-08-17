@@ -4,6 +4,9 @@
 " You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
 " We set it explicitely to make our position clear!
 
+set encoding=utf-8
+set fileencoding=utf-8
+
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 colorscheme default
