@@ -59,7 +59,7 @@ set scrolloff=9
 set laststatus=2
 
 " Format the status line
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l\ \ Column:%c\ \ Filetype:%{&filetype}
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P\ \
 
 "-----------------------------------------------------------
 "        indentation and tab relate
@@ -92,7 +92,7 @@ nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 set number
 "" set adaptive toggle number
 nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
-"set relativenumber
+set relativenumber
 
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
