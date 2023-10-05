@@ -1,8 +1,18 @@
-"-----------------------------------------------------------
-"        Plugins
-"-----------------------------------------------------------
+"""-----------------------------------------------------------
+"""        Plugins
+"""-----------------------------------------------------------
+"""
+source ./plugins.vim
+
+
+"""-----------------------------------------------------------
+"""        Setting attributes
+"""-----------------------------------------------------------
+"""
+
 " You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
 " We set it explicitely to make our position clear!
+set nocompatible
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -55,18 +65,22 @@ set scrolloff=9
 "set scrolloff=9999
 
 
-"-----------------------------------------------------------
-"        Status line
-"-----------------------------------------------------------
+"""-----------------------------------------------------------
+"""        Status line
+"""-----------------------------------------------------------
+"""
+
 " Always show the status line
 set laststatus=2
 
 " Format the status line
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P\ \
 
-"-----------------------------------------------------------
-"        indentation and tab relate
-"-----------------------------------------------------------
+"""-----------------------------------------------------------
+"""        indentation and tab relate
+"""-----------------------------------------------------------
+"""
+
 vnoremap < <gv
 vnoremap > >gv
 
@@ -78,9 +92,11 @@ set softtabstop =4          " Tab key indents by 4 spaces.
 set shiftwidth  =4          " >> indents by 4 spaces.
 set shiftround              " >> indents to next multiple of 'shiftwidth'.
 
-"-----------------------------------------------------------
-"        keymap custom
-"-----------------------------------------------------------
+"""-----------------------------------------------------------
+"""        keymap custom
+"""-----------------------------------------------------------
+"""
+
 inoremap kk <ESC>
 let mapleader = " "
 map ; <leader>
@@ -90,13 +106,12 @@ noremap <Leader>x :x<CR>
 
 " Disable paste for using supertab plugin
 set paste
-nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
+nnoremap <expr> <leader>P &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
 set number
 "" set adaptive toggle number
 nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
 set relativenumber
-
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " tabnew
@@ -107,28 +122,37 @@ set wrap    " set wrap on the fly
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
-" noremap <leader>r :so ~/.vim/server.vimrc<CR>
 noremap <leader>r :so ~/.vim/vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
 
-noremap <leader>tr :set expandtab<cr>:retab<cr>
+noremap <leader>tr :retab<cr>
 
 noremap <leader>y :%y+<cr>
 
 noremap <leader>E :vs.<cr>
 noremap <leader>e :Explore<cr>
-"-----------------------------------------------------------
-"        other config
-"-----------------------------------------------------------
+
+" Clear current highlight search
+noremap <leader>h :noh<cr>
+
+" In byobu, C-A is used for window management, so let change to <leader>a;
+" Example for using C-A in vim:
+" - https://www.reddit.com/r/vim/comments/av24za/til_about_gca/
+noremap <leader>a g<C-A>
+
+"""-----------------------------------------------------------
+"""        other config
+"""-----------------------------------------------------------
+"""
 
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 "set clipboard=unnamedplus
 " or you can direct use "+p
 noremap <leader>Y "+y
-noremap <leader>P "+p
+noremap <leader>p "+p
 
 set expandtab
 
