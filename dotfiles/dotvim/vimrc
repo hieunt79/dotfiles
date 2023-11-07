@@ -154,5 +154,11 @@ noremap <leader>a g<C-A>
 noremap <leader>Y "+y
 noremap <leader>p "+p
 
+" clear trailing space in every line
+noremap <leader>c :%s/\s\+$//g
+
+" WIP: Ctrl-^ is for fast switching file maybe =))
+noremap <leader><leader> <C-^>
+
 set expandtab
 
