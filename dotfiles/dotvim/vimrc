@@ -127,10 +127,13 @@ noremap <leader>r :so ~/.vim/vimrc<CR>
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
 
+"
 noremap <leader>tr :retab<cr>
 
+"
 noremap <leader>y :%y+<cr>
 
+"
 noremap <leader>E :vs.<cr>
 noremap <leader>e :Explore<cr>
 
@@ -142,6 +145,13 @@ noremap <leader>h :noh<cr>
 " - https://www.reddit.com/r/vim/comments/av24za/til_about_gca/
 noremap <leader>a g<C-A>
 
+
+" You know <shift>j that concaticate multiple line with :space:,
+" below is opposite of <shift>j - make a line with numbers of :space: become multiple line
+nnoremap Q gqap
+vnoremap Q gq
+
+
 """-----------------------------------------------------------
 """        other config
 """-----------------------------------------------------------
@@ -150,6 +160,7 @@ noremap <leader>a g<C-A>
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 "set clipboard=unnamedplus
+
 " or you can direct use "+p
 noremap <leader>Y "+y
 noremap <leader>p "+p
