@@ -108,11 +108,14 @@ noremap <Leader>x :x<CR>
 set paste
 nnoremap <expr> <leader>P &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
-set number
 "" set adaptive toggle number
+set nonumber
 nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
-set relativenumber
+set norelativenumber
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
+
+" set nolinenumber (or no visual)
+nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>' : ':set norelativenumber<cr>:set nonumber<cr>'
 
 " tabnew
 noremap <leader>tn :tabnew 
