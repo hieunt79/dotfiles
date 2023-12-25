@@ -31,7 +31,9 @@ set showcmd                 " Show already typed keys when more are expected.
 set splitbelow              " Open new windows below the current window.
 set splitright              " Open new windows right of the current window.
 
-set cursorline              " Find the current line quickly.
+" Hide by default
+"set cursorline              " Find the current line quickly.
+
 " smart set cursorline
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
@@ -70,8 +72,8 @@ set scrolloff=9
 """-----------------------------------------------------------
 """
 
-" Always show the status line
-set laststatus=2
+" Hide by default
+set laststatus=1
 
 " Format the status line
 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P\ \
@@ -114,8 +116,8 @@ nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<c
 set norelativenumber
 nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
-" set nolinenumber (or no visual)
-nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>' : ':set norelativenumber<cr>:set nonumber<cr>'
+" set visual
+nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
 
 " tabnew
 noremap <leader>tn :tabnew 
