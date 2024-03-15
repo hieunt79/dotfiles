@@ -176,5 +176,12 @@ noremap <leader>c :%s/\s\+$//g
 " WIP: Ctrl-^ is for fast switching file maybe =))
 noremap <leader><leader> <C-^>
 
+" To align '=' character in block
+" First, visual a block with 'v'(remember to visual one more line break, it's bug of column command),
+" then <leader>T, after that 'gv' to reselect visual block.
+" Second, remove added space next to '=' with <leader>=
+vnoremap <leader>T :!column -t <cr>
+vnoremap <leader>= :s/ = /=/<cr>
+
 set expandtab
 
