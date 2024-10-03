@@ -99,7 +99,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 """-----------------------------------------------------------
 """
 
-"inoremap kk <ESC>
+inoremap qq <ESC>
 let mapleader = " "
 map ; <leader>
 noremap <Leader>w :w<cr>
