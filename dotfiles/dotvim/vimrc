@@ -112,9 +112,9 @@ nnoremap <expr> <leader>P &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
 "" set adaptive toggle number
 set nonumber
-nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
+"nnoremap <expr> <leader>n &number =~# '1' ? ':set nonumber<cr>' : ':set number<cr>'
 set norelativenumber
-nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
+"nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " set visual
 nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
@@ -162,7 +162,9 @@ nnoremap Q gqap
 vnoremap Q gq
 
 set hidden
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
+nnoremap <Leader>bb :buffers<CR>:buffer<Space>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bp :bprevious<CR>
 
 """-----------------------------------------------------------
 """        other config
@@ -192,8 +194,8 @@ vnoremap <leader>= :s/ = /=/<cr>
 
 set expandtab
 " Wrapped lines goes down/up to next row, rather than next line in file.
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 
 "set backspace=indent,eol,start  " backspace for dummies
 "set linespace=0                 " No extra spaces between rows
@@ -244,3 +246,14 @@ nnoremap k gk
 "
 "" }
 
+function! ToggleNumberMode()
+  if &number
+    set nonumber relativenumber
+  elseif &relativenumber
+    set norelativenumber number
+  else
+    set number
+  endif
+endfunction
+
+nnoremap <leader>n :call ToggleNumberMode()<CR>
