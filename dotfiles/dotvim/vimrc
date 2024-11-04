@@ -76,7 +76,8 @@ set scrolloff=9
 set laststatus=1
 
 " Format the status line
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
+set statusline=\ %f%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:\ %{&filetype}\ \ %m%r%w\ %P
+"set statusline=\ %f\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
 
 """-----------------------------------------------------------
 """        indentation and tab relate
@@ -155,16 +156,17 @@ noremap <leader>h :noh<cr>
 " - https://www.reddit.com/r/vim/comments/av24za/til_about_gca/
 noremap <leader>a g<C-A>
 
-
 " You know <shift>j that concaticate multiple line with :space:,
 " below is opposite of <shift>j - make a line with numbers of :space: become multiple line
 nnoremap Q gqap
 vnoremap Q gq
 
 set hidden
+
 nnoremap <Leader>bb :buffers<CR>:buffer<Space>
 nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bd :buffers<CR>:bdelete<Space>
 
 """-----------------------------------------------------------
 """        other config
