@@ -127,7 +127,11 @@ set showmatch                   " show matching brackets/parenthesis
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
-nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
+nnoremap <expr> <leader>sw &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
+
+" Split
+nnoremap <leader>sh :split 
+nnoremap <leader>sv :vsplit 
 
 " Reload config
 noremap <leader>r :so ~/.vimrc<CR>
