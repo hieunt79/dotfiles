@@ -103,6 +103,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 "map ' ' <leader>
 let mapleader = " "
 "map ';' <leader>
+map ',' <leader>
 
 inoremap qq <ESC>
 
@@ -121,7 +122,7 @@ set norelativenumber
 "nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " set visual
-nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
+nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':syntax on<cr>:set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
 
 " tabnew
 noremap <leader>tn :tabnew 
