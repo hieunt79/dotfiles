@@ -101,9 +101,9 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 
 "let mapleader = ";"
 "map ' ' <leader>
-let mapleader = " "
+let mapleader = ","
 "map ';' <leader>
-map ',' <leader>
+nmap <space> ,
 
 inoremap qq <ESC>
 
