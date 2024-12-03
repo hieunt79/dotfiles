@@ -2,8 +2,8 @@
 """        Plugins
 """-----------------------------------------------------------
 """
+silent! source ~/.vim/autoload/plug.vim
 silent! source ~/.vim/plugins.vim
-
 
 """-----------------------------------------------------------
 """        Setting attributes
@@ -103,7 +103,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 "map ' ' <leader>
 let mapleader = ","
 "map ';' <leader>
-nmap <space> ,
+map ' ' <leader>
 
 inoremap qq <ESC>
 
@@ -122,7 +122,7 @@ set norelativenumber
 "nnoremap <expr> <leader>N &relativenumber =~ '1' ? ':set norelativenumber<cr>' : ':set relativenumber<cr>'
 
 " set visual
-nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':syntax on<cr>:set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
+nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
 
 " tabnew
 noremap <leader>tn :tabnew 
@@ -138,9 +138,6 @@ noremap <leader>r :so ~/.vimrc<CR>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
-
-"
-noremap <leader>tr :retab<cr>
 
 " replace tab by ',' character (useful for pasting from excel to text, then save in csv format)
 noremap <leader>tc :%s/\t/,/g
@@ -202,55 +199,6 @@ set expandtab
 "nnoremap j gj
 "nnoremap k gk
 
-"set backspace=indent,eol,start  " backspace for dummies
-"set linespace=0                 " No extra spaces between rows
-"set nu                          " Line numbers on
-"set incsearch                   " find as you type search
-"set hlsearch                    " highlight search terms
-"set winminheight=0              " windows can be 0 line high
-"set ignorecase                  " case insensitive search
-"set smartcase                   " case sensitive when uc present
-"set wildmenu                    " show list instead of just completing
-"set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
-"set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
-"set scrolljump=5                " lines to scroll when cursor leaves screen
-"set scrolloff=3                 " minimum lines to keep above and below cursor
-"set foldenable                  " auto fold code
-"set list
-"set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
-"
-"" Formatting {
-"    set nowrap                      " wrap long lines
-"    set autoindent                  " indent at the same level of the previous line
-"    set shiftwidth=4                " use indents of 4 spaces
-"    set expandtab                   " tabs are spaces, not tabs
-"    set tabstop=4                   " an indentation every four columns
-"    set softtabstop=4               " let backspace delete indent
-"    "set matchpairs+=<:>                " match, to be used with %
-"    set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-"    "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-"    " Remove trailing whitespaces and ^M chars
-"    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-"" }
-
-"" Key (re)Mappings {
-"
-"    "The default leader is '\', but many people prefer ',' as it's in a standard
-"    "location
-"    let mapleader = ','
-"
-"    " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
-"    nnoremap ; :
-"
-"    " Easier moving in tabs and windows
-"    map <C-J> <C-W>j<C-W>_
-"    map <C-K> <C-W>k<C-W>_
-"    map <C-L> <C-W>l<C-W>_
-"    map <C-H> <C-W>h<C-W>_
-"
-"
-"" }
-
 function! ToggleNumberMode()
   if &number
     set nonumber relativenumber
@@ -263,13 +211,6 @@ endfunction
 
 nnoremap <leader>n :call ToggleNumberMode()<CR>
 
-"function! ToggleTreeMode()
-"  let current_dir = expand('%p:h')
-"" execute 'echo ' current_dir
-"" execute 'echo ' current_dir '>' '/tmp/test.txt'
-"endfunction
-"nnoremap <leader>v :call ToggleTreeMode()<CR>
-"
 set showtabline=1  " 1 to show tabline only when more than one tab is present
 set tabline=%!MyTabLine()  " custom tab pages line
 function! MyTabLine() " acclamation to avoid conflict
@@ -341,3 +282,30 @@ function! MyTabLine() " acclamation to avoid conflict
     endif
     return s
 endfunction"
+
+if exists('g:plugs')
+    nnoremap <leader>tr :NERDTreeToggle<cr>
+    nnoremap <leader>tf :NERDTreeFocus<cr>
+    "noremap <leader>tr :NERDTree<cr>
+
+    let g:lightline = {'colorscheme' : 'ayu'}
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+    set termguicolors
+    "colorscheme horizon
+
+    "let ayucolor="light"  " for light version of theme
+    let ayucolor="mirage" " for mirage version of theme
+    "let ayucolor="dark"   " for dark version of theme
+    colorscheme ayu
+
+    nnoremap <leader>gb :Gblame<cr>
+    nnoremap <leader>gs :Gstatus<cr>
+    nnoremap <leader>gc :Gcommit -v<cr>
+    nnoremap <leader>ga :Git add -p<cr>
+    nnoremap <leader>gm :Gcommit --amend<cr>
+    nnoremap <leader>gp :Gpush<cr>
+    nnoremap <leader>gd :Gdiff<cr>
+endif
+
