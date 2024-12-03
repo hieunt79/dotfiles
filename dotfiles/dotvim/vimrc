@@ -300,12 +300,21 @@ if exists('g:plugs')
     "let ayucolor="dark"   " for dark version of theme
     colorscheme ayu
 
-    nnoremap <leader>gb :Gblame<cr>
-    nnoremap <leader>gs :Gstatus<cr>
-    nnoremap <leader>gc :Gcommit -v<cr>
+    nnoremap <leader>gb :Git blame<cr>
+    nnoremap <leader>gs :Git <cr>
+    nnoremap <leader>gc :Git commit -v<cr>
     nnoremap <leader>ga :Git add -p<cr>
-    nnoremap <leader>gm :Gcommit --amend<cr>
-    nnoremap <leader>gp :Gpush<cr>
-    nnoremap <leader>gd :Gdiff<cr>
+    nnoremap <leader>gm :Git commit --amend<cr>
+    nnoremap <leader>gp :Git push<cr>
+    nnoremap <leader>gd :Git diff<cr>
+
+    set relativenumber
+    set number
+    set laststatus=2
+    set cursorline
+
+    " Start NERDTree. If a file is specified, move the cursor to its window.
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 endif
 
