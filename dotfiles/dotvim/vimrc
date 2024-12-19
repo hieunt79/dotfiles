@@ -194,6 +194,8 @@ noremap <leader>c :%s/\s\+$//g
 vnoremap <leader>T :!column -t <cr>
 vnoremap <leader>= :s/ = /=/<cr>
 
+noremap <leader>ft :set filetype=
+
 set expandtab
 " Wrapped lines goes down/up to next row, rather than next line in file.
 "nnoremap j gj
@@ -295,10 +297,14 @@ if exists('g:plugs')
     set termguicolors
     "colorscheme horizon
 
-    "let ayucolor="light"  " for light version of theme
-    let ayucolor="mirage" " for mirage version of theme
-    "let ayucolor="dark"   " for dark version of theme
-    colorscheme ayu
+    "colorscheme ayu
+    "let ayucolor="light"  " for light version of ayu theme
+    "let ayucolor="mirage" " for mirage version of ayu theme
+    "let ayucolor="dark"   " for dark version of ayu theme
+
+    colorscheme gruvbox
+    set background=dark   " for dark ver of gruvbox
+    "set background=light   " for light ver of gruvbox
 
     nnoremap <leader>gb :Git blame<cr>
     nnoremap <leader>gs :Git <cr>
@@ -314,7 +320,7 @@ if exists('g:plugs')
     set cursorline
 
     " Start NERDTree. If a file is specified, move the cursor to its window.
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+    "autocmd StdinReadPre * let s:std_in=1
+    "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 endif
 
