@@ -115,7 +115,7 @@ nnoremap <leader>n :call ToggleNumberMode()<CR>
 nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
 
 " tabnew
-noremap <leader>tn :tabnew 
+noremap <leader>tn :tabnew
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
@@ -129,9 +129,6 @@ inoremap <C-w> <C-g>u<C-w>
 
 " replace tab by ',' character (useful for pasting from excel to text, then save in csv format)
 noremap <leader>tc :%s/\t/,/g
-
-"
-noremap <leader>y :%y+<cr>
 
 "
 noremap <leader>E :vs.<cr>
@@ -184,6 +181,7 @@ set autoindent              " Auto indent with tab
 set smartindent
 set copyindent              " Indent according to previous line.
 
+set expandtab               " Use spaces instead of tabs.
 "autocmd BufRead,BufNewFile *.c,*.h setlocal cindent
 autocmd FileType c setlocal autoindent | setlocal noexpandtab
 
@@ -192,16 +190,29 @@ autocmd FileType c setlocal autoindent | setlocal noexpandtab
 """-----------------------------------------------------------
 """
 
+augroup visual_commenting
+    autocmd!
+    autocmd FileType java,rust  let b:comment_symbol = '//'
+    autocmd FileType c,cpp  let b:comment_symbol = '//'
+    autocmd FileType vim              let b:comment_symbol = '"'
+    autocmd FileType sh,python        let b:comment_symbol = '#'
+    autocmd FileType tex              let b:comment_symbol = '%'
+    autocmd BufEnter * silent! vnoremap <silent> <C-_> :<C-u>keepp '<,'>s@^@\=b:comment_symbol<CR>
+    autocmd BufEnter * silent! exec 'vnoremap <silent> <C-?> :<C-u>keepp ''<,''>s@^' . b:comment_symbol . '@<CR>'
+augroup END
+
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
 "set clipboard=unnamedplus
+"
+noremap <leader>y :%y+<cr>
 
 " or you can direct use "+p
 noremap <leader>Y "+y
 noremap <leader>P "+p
 
 " clear trailing space in every line
-noremap <leader>c :%s/\s\+$//g
+noremap <leader>ts :%s/\s\+$//g
 
 " WIP: Ctrl-^ is for fast switching file maybe =))
 "noremap <leader><leader> <C-^>
@@ -293,6 +304,11 @@ function! MyTabLine() " acclamation to avoid conflict
     endif
     return s
 endfunction"
+
+"""-----------------------------------------------------------
+"""        for plugins config
+"""-----------------------------------------------------------
+"""
 
 if exists('g:plugs')
     nnoremap <leader>tr :NERDTreeToggle<cr>
