@@ -72,7 +72,8 @@ set scrolloff=9
 set laststatus=1
 
 " Format the status line
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
+"set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
+set statusline=\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
 
 """-----------------------------------------------------------
 """        keymap custom
@@ -115,7 +116,7 @@ nnoremap <leader>n :call ToggleNumberMode()<CR>
 nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
 
 " tabnew
-noremap <leader>tn :tabnew
+noremap <leader>tn :tabnew 
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
@@ -192,8 +193,9 @@ autocmd FileType c setlocal autoindent | setlocal noexpandtab
 
 augroup visual_commenting
     autocmd!
-    autocmd FileType java,rust  let b:comment_symbol = '//'
-    autocmd FileType c,cpp  let b:comment_symbol = '//'
+    autocmd FileType java,rust        let b:comment_symbol = '//'
+    autocmd FileType c,cpp            let b:comment_symbol = '//'
+    autocmd FileType yml,yaml         let b:comment_symbol = '#'
     autocmd FileType vim              let b:comment_symbol = '"'
     autocmd FileType sh,python        let b:comment_symbol = '#'
     autocmd FileType tex              let b:comment_symbol = '%'
@@ -322,13 +324,13 @@ if exists('g:plugs')
     set termguicolors
     "colorscheme horizon
 
-    "colorscheme ayu
+    colorscheme ayu
     "let ayucolor="light"  " for light version of ayu theme
-    "let ayucolor="mirage" " for mirage version of ayu theme
+    let ayucolor="mirage" " for mirage version of ayu theme
     "let ayucolor="dark"   " for dark version of ayu theme
 
-    colorscheme gruvbox
-    set background=dark   " for dark ver of gruvbox
+    "colorscheme gruvbox
+    "set background=dark   " for dark ver of gruvbox
     "set background=light   " for light ver of gruvbox
 
     nnoremap <leader>gb :Git blame<cr>
