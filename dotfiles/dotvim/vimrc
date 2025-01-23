@@ -209,9 +209,10 @@ augroup END
 "
 noremap <leader>y :%y+<cr>
 
-" or you can direct use "+p
-noremap <leader>Y "+y
-noremap <leader>P "+p
+" Yank all lines in file to "
+noremap <leader>Y mjggVGy`j
+" Replace current data in file with " registry
+noremap <leader>P ggVGp
 
 " clear trailing space in every line
 noremap <leader>ts :%s/\s\+$//g
@@ -324,13 +325,13 @@ if exists('g:plugs')
     set termguicolors
     "colorscheme horizon
 
-    colorscheme ayu
+    "colorscheme ayu
     "let ayucolor="light"  " for light version of ayu theme
     let ayucolor="mirage" " for mirage version of ayu theme
     "let ayucolor="dark"   " for dark version of ayu theme
 
-    "colorscheme gruvbox
-    "set background=dark   " for dark ver of gruvbox
+    colorscheme gruvbox
+    set background=dark   " for dark ver of gruvbox
     "set background=light   " for light ver of gruvbox
 
     nnoremap <leader>gb :Git blame<cr>
