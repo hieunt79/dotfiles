@@ -86,14 +86,24 @@ map ' ' <leader>
 vnoremap < <gv
 vnoremap > >gv
 
-inoremap qq <ESC>
+inoremap jj <ESC>
+inoremap kk <C-O>
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 
 noremap <Leader>w :w<cr>
 noremap <Leader>q :q!<CR>
 noremap <Leader>x :x<CR>
 
 " Disable paste for using supertab plugin
-"set paste
+set nopaste
 nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
 "" set adaptive toggle number
