@@ -4,3 +4,12 @@ alias ovs-ofctl="docker exec -ti openvswitch_vswitchd ovs-ofctl"
 alias ovs-vsctl="docker exec -ti openvswitch_vswitchd ovs-vsctl"
 alias ovs-appctl="docker exec -ti openvswitch_vswitchd ovs-appctl"
 
+alias virsh="docker exec -ti nova_libvirt virsh"
+
+export DEBIAN_FRONTEND=noninteractive
+
+SOURCE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+VIMCONFIG="$SOURCE_DIR/vimrc"
+if [[ -f $VIMCONFIG ]]; then
+    alias vim="vim -u $VIMCONFIG"
+fi
