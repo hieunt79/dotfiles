@@ -89,15 +89,6 @@ vnoremap > >gv
 inoremap jj <ESC>
 inoremap kk <C-O>
 
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
-
 noremap <Leader>w :w<cr>
 noremap <Leader>q :q!<CR>
 noremap <Leader>x :x<CR>
@@ -200,6 +191,14 @@ autocmd FileType c setlocal autoindent | setlocal noexpandtab
 """        other config
 """-----------------------------------------------------------
 """
+
+" if files doesn't exist, gf creates new file at path under cursor
+" As suggest at
+" https://www.reddit.com/r/vim/comments/3cek64/comment/csvexjp/
+" But, be careful, if the path is mapped to smt in docker, or the path belongs
+" to other server, you may accidentally create wrong file (if you save the
+" buffer)
+map gf :e <cfile><CR>
 
 augroup visual_commenting
     autocmd!
@@ -351,11 +350,20 @@ if exists('g:plugs')
     nnoremap <leader>gm :Git commit --amend<cr>
     nnoremap <leader>gp :Git push<cr>
     nnoremap <leader>gd :Git diff<cr>
+    nnoremap <leader>gg :GitGutter<cr>
 
     set relativenumber
     set number
     set laststatus=2
     set cursorline
+
+    inoremap " ""<left>
+    inoremap ' ''<left>
+    inoremap ( ()<left>
+    inoremap [ []<left>
+    inoremap { {}<left>
+    inoremap {<CR> {<CR>}<ESC>O
+    inoremap {;<CR> {<CR>};<ESC>O
 
     " Start NERDTree. If a file is specified, move the cursor to its window.
     "autocmd StdinReadPre * let s:std_in=1
