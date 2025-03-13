@@ -4,6 +4,7 @@
 """
 silent! source ~/.vim/autoload/plug.vim
 silent! source ~/.vim/plugins.vim
+silent! source ~/.vim/syntax/*
 
 """-----------------------------------------------------------
 """        Setting attributes
@@ -95,6 +96,7 @@ noremap <Leader>x :x<CR>
 
 " Disable paste for using supertab plugin
 set nopaste
+" set paste
 nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
 
 "" set adaptive toggle number
@@ -214,8 +216,8 @@ augroup END
 
 " To copy to clipboard of host, first, vim must compile with +xterm_clipboard,
 " then set below config, or easier install vim-gtk3.
-"set clipboard=unnamedplus
-"
+
+set clipboard=unnamedplus
 noremap <leader>y :%y+<cr>
 
 " Yank all lines in file to "
@@ -340,8 +342,8 @@ if exists('g:plugs')
     "let ayucolor="dark"   " for dark version of ayu theme
 
     colorscheme gruvbox
-    set background=dark   " for dark ver of gruvbox
-    "set background=light   " for light ver of gruvbox
+    "set background=dark   " for dark ver of gruvbox
+    set background=light   " for light ver of gruvbox
 
     nnoremap <leader>gb :Git blame<cr>
     nnoremap <leader>gs :Git <cr>
@@ -352,6 +354,7 @@ if exists('g:plugs')
     nnoremap <leader>gd :Git diff<cr>
     nnoremap <leader>gg :GitGutter<cr>
 
+    set nopaste
     set relativenumber
     set number
     set laststatus=2

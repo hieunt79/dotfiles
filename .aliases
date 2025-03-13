@@ -1,3 +1,25 @@
+#!/usr/bin/zsh
+
+alias docker="sudo docker"
+
+# Easier navigation: .., ..., ...., ~
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+
+# Git aliases
+alias git-log="git logs --oneline --graph"
+
+#
+alias tailf="tail -f"
+
+#
+alias less="less -S "
+alias les="less -S "
+alias le="less -S "
+
+
 alias ovn-nbctl="docker exec -ti ovn_nb_db ovn-nbctl --no-leader-only"
 alias ovn-sbctl="docker exec -ti ovn_sb_db ovn-sbctl --no-leader-only"
 alias ovs-ofctl="docker exec -ti openvswitch_vswitchd ovs-ofctl"
