@@ -8,9 +8,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~="cd ~"
 
-# Git aliases
-alias git-log="git logs --oneline --graph"
-
 #
 alias tailf="tail -f"
 
@@ -28,10 +25,14 @@ alias ovs-appctl="docker exec -ti openvswitch_vswitchd ovs-appctl"
 
 alias virsh="docker exec -ti nova_libvirt virsh"
 
+alias ops="openstack "
+
 export DEBIAN_FRONTEND=noninteractive
 
 SOURCE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 VIMCONFIG="$SOURCE_DIR/vimrc"
 if [[ -f $VIMCONFIG ]]; then
+    alias vim="vim -u $VIMCONFIG"
+elif [[ -L $VIMCONFIG ]]; then
     alias vim="vim -u $VIMCONFIG"
 fi

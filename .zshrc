@@ -126,7 +126,7 @@ function refresh_ssh_autocomplete () {
     host_list=($(cat ~/.ssh/config | grep 'Host '  | awk '{s = s $2 " "} END {print s}'))
     zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
 }
-refresh_ssh_autocomplete
+#refresh_ssh_autocomplete
 
 export DISPLAY=:0
 

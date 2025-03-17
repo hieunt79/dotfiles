@@ -17,7 +17,7 @@ function install {
         ln -s $SCRIPT_PATH/$VIM_PATH/plugins.vim $HOME/.vim/plugins.vim
         #
         rm -f $HOME/.vim/syntax.old
-        mv $HOME/.vim/syntax $HOME/syntax.old
+        mv $HOME/.vim/syntax $HOME/.vim/syntax.old
         ln -s $SCRIPT_PATH/$VIM_PATH/syntax $HOME/.vim/syntax
     fi
     if [ -f "$HOME/.vimrc" ]; then
@@ -41,15 +41,17 @@ function install {
 
     # install zshrc
     ZSH_PATH=".oh-my-zsh"
-    if [ -f "$HOME/.zshrc" ]; then
-        rm -f $HOME/.zshrc.old
-        mv $HOME/.zshrc $HOME/.zshrc.old
-        ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
-    else
-        rm -f $HOME/.zshrc
-        ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
+    if [ -d $HOME/$ZSH_PATH ]; then
+        if [ -f "$HOME/.zshrc" ]; then
+            rm -f $HOME/.zshrc.old
+            mv $HOME/.zshrc $HOME/.zshrc.old
+            ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
+        else
+            rm -f $HOME/.zshrc
+            ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
+        fi
+        cp $SCRIPT_PATH/$ZSH_PATH/themes/* $HOME/$ZSH_PATH/themes/
     fi
-    cp $SCRIPT_PATH/$ZSH_PATH/themes/* $HOME/$ZSH_PATH/themes/
 }
 
 install
