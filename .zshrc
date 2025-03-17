@@ -74,7 +74,8 @@ HIST_STAMPS="%4Y%2m%2d"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions history-substring-search zsh-syntax-highlighting)
+#plugins=(git zsh-autosuggestions history-substring-search zsh-syntax-highlighting)
+plugins=(git history-substring-search zsh-syntax-highlighting zsh-autosuggestions)
 
 setopt noautomenu
 setopt nomenucomplete
@@ -121,6 +122,14 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 source $HOME/.bash_aliases
 source $HOME/.aliases
 
+function refresh_ssh_autocomplete () {
+    host_list=($(cat ~/.ssh/config | grep 'Host '  | awk '{s = s $2 " "} END {print s}'))
+    zstyle ':completion:*:(ssh|scp|sftp):*' hosts $host_list
+}
+refresh_ssh_autocomplete
+
+export DISPLAY=:0
+
 PRELINE="\r\033[A"
 
 function random {
@@ -152,3 +161,4 @@ function color {
 }
 color
 
+#salut
