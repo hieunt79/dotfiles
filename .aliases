@@ -36,3 +36,9 @@ if [[ -f $VIMCONFIG ]]; then
 elif [[ -L $VIMCONFIG ]]; then
     alias vim="vim -u $VIMCONFIG"
 fi
+VIMCONFIG="$SOURCE_DIR/.vimrc"
+if [[ -f $VIMCONFIG ]]; then
+    alias vim="vim -u $VIMCONFIG"
+elif [[ -L $VIMCONFIG ]]; then
+    alias vim="vim -u $VIMCONFIG"
+fi

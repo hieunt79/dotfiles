@@ -94,11 +94,6 @@ noremap <Leader>w :w<cr>
 noremap <Leader>q :q!<CR>
 noremap <Leader>x :x<CR>
 
-" Disable paste for using supertab plugin
-set nopaste
-" set paste
-nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
-
 "" set adaptive toggle number
 set nonumber
 set norelativenumber
@@ -188,6 +183,18 @@ set copyindent              " Indent according to previous line.
 set expandtab               " Use spaces instead of tabs.
 "autocmd BufRead,BufNewFile *.c,*.h setlocal cindent
 autocmd FileType c setlocal autoindent | setlocal noexpandtab
+
+" Disable paste for using supertab plugin
+set paste
+function! TogglePasteMode()
+  if &paste
+    set nopaste
+  else
+    set paste
+  endif
+endfunction
+nnoremap <leader>p :call TogglePasteMode()<CR>
+
 
 """-----------------------------------------------------------
 """        other config
@@ -357,16 +364,17 @@ if exists('g:plugs')
     set nopaste
     set relativenumber
     set number
+
     set laststatus=2
     set cursorline
 
-    inoremap " ""<left>
-    inoremap ' ''<left>
-    inoremap ( ()<left>
-    inoremap [ []<left>
-    inoremap { {}<left>
-    inoremap {<CR> {<CR>}<ESC>O
-    inoremap {;<CR> {<CR>};<ESC>O
+    "inoremap " ""<left>
+    "inoremap ' ''<left>
+    "inoremap ( ()<left>
+    "inoremap [ []<left>
+    "inoremap { {}<left>
+    "inoremap {<CR> {<CR>}<ESC>O
+    "inoremap {;<CR> {<CR>};<ESC>O
 
     " Start NERDTree. If a file is specified, move the cursor to its window.
     "autocmd StdinReadPre * let s:std_in=1
