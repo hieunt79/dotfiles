@@ -27,13 +27,6 @@ set showcmd                 " Show already typed keys when more are expected.
 set splitbelow              " Open new windows below the current window.
 set splitright              " Open new windows right of the current window.
 
-" Hide by default
-"set cursorline              " Find the current line quickly.
-
-" smart set cursorline
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
-
 set ruler                   " show cursor position
 
 set magic                   " For regular expressions turn magic on
@@ -94,11 +87,6 @@ noremap <Leader>w :w<cr>
 noremap <Leader>q :q!<CR>
 noremap <Leader>x :x<CR>
 
-" Disable paste for using supertab plugin
-set nopaste
-" set paste
-nnoremap <expr> <leader>p &paste =~ '1' ? ':set nopaste<cr>' : ':set paste<cr>'
-
 "" set adaptive toggle number
 set nonumber
 set norelativenumber
@@ -116,7 +104,28 @@ endfunction
 nnoremap <leader>n :call ToggleNumberMode()<CR>
 
 " set visual
-nnoremap <expr> <leader>v &relativenumber =~ '0' && &number =~ '0' ? ':set relativenumber<cr>:set number<cr>:set laststatus=2<cr>:set cursorline<cr>' : ':set norelativenumber<cr>:set nonumber<cr>:set laststatus=1<cr>:set nocursorline<cr>'
+function! ToggleVisualMode()
+    if &relativenumber == 0 && &number == 0
+        set relativenumber
+        set number
+        set laststatus=2
+        set cursorline
+        " smart cursorline
+        autocmd InsertLeave,WinEnter * set cursorline
+        autocmd InsertEnter,WinLeave * set nocursorline
+
+    else
+        set norelativenumber
+        set nonumber
+        set laststatus=1
+        set nocursorline
+        autocmd! InsertLeave,WinEnter * set cursorline
+        autocmd! InsertEnter,WinLeave * set nocursorline
+    endif
+endfunction
+
+nnoremap <leader>v :call ToggleVisualMode()<CR>
+
 
 " tabnew
 noremap <leader>tn :tabnew 
@@ -174,6 +183,17 @@ filetype plugin indent on  " Load plugins according to detected filetype.
 " Ref: https://stackoverflow.com/a/2159997
 set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
+" Disable paste for using supertab plugin
+set paste
+function! TogglePasteMode()
+  if &paste
+    set nopaste
+  else
+    set paste
+  endif
+endfunction
+nnoremap <leader>p :call TogglePasteMode()<CR>
+
 set tabstop=4
 set softtabstop=4          " Tab key indents by 4 spaces.
 set shiftwidth=4          " >> indents by 4 spaces.
@@ -188,6 +208,7 @@ set copyindent              " Indent according to previous line.
 set expandtab               " Use spaces instead of tabs.
 "autocmd BufRead,BufNewFile *.c,*.h setlocal cindent
 autocmd FileType c setlocal autoindent | setlocal noexpandtab
+
 
 """-----------------------------------------------------------
 """        other config
@@ -357,16 +378,17 @@ if exists('g:plugs')
     set nopaste
     set relativenumber
     set number
+
     set laststatus=2
     set cursorline
 
-    inoremap " ""<left>
-    inoremap ' ''<left>
-    inoremap ( ()<left>
-    inoremap [ []<left>
-    inoremap { {}<left>
-    inoremap {<CR> {<CR>}<ESC>O
-    inoremap {;<CR> {<CR>};<ESC>O
+    "inoremap " ""<left>
+    "inoremap ' ''<left>
+    "inoremap ( ()<left>
+    "inoremap [ []<left>
+    "inoremap { {}<left>
+    "inoremap {<CR> {<CR>}<ESC>O
+    "inoremap {;<CR> {<CR>};<ESC>O
 
     " Start NERDTree. If a file is specified, move the cursor to its window.
     "autocmd StdinReadPre * let s:std_in=1
