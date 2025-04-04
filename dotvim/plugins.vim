@@ -11,4 +11,5 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   Plug 'morhetz/gruvbox'
+  Plug 'tomasiser/vim-code-dark'
 call plug#end()

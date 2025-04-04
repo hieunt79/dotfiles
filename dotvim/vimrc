@@ -184,16 +184,17 @@ filetype plugin indent on  " Load plugins according to detected filetype.
 set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
 " Disable paste for using supertab plugin
-set paste
 function! TogglePasteMode()
   if &paste
     set nopaste
   else
     set paste
+    set expandtab               " Use spaces instead of tabs.
   endif
 endfunction
 nnoremap <leader>p :call TogglePasteMode()<CR>
 
+set paste
 set tabstop=4
 set softtabstop=4          " Tab key indents by 4 spaces.
 set shiftwidth=4          " >> indents by 4 spaces.
@@ -358,13 +359,13 @@ if exists('g:plugs')
     "colorscheme horizon
 
     "colorscheme ayu
-    "let ayucolor="light"  " for light version of ayu theme
-    let ayucolor="mirage" " for mirage version of ayu theme
-    "let ayucolor="dark"   " for dark version of ayu theme
+    ""let ayucolor="light"  " for light version of ayu theme
+    "let ayucolor="mirage" " for mirage version of ayu theme
+    ""let ayucolor="dark"   " for dark version of ayu theme
 
     colorscheme gruvbox
-    "set background=dark   " for dark ver of gruvbox
-    set background=light   " for light ver of gruvbox
+    set background=dark   " for dark ver of gruvbox
+    "set background=light   " for light ver of gruvbox
 
     nnoremap <leader>gb :Git blame<cr>
     nnoremap <leader>gs :Git <cr>
@@ -376,6 +377,8 @@ if exists('g:plugs')
     nnoremap <leader>gg :GitGutter<cr>
 
     set nopaste
+    set expandtab
+
     set relativenumber
     set number
 
