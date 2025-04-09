@@ -6,7 +6,7 @@ fi
 
 
 function main {
-    if [ "$#" -ne 1 ]; then
+    if [ "$#" -lt 1 ]; then
         echo ""
         echo "Pls $0 dev|server [--debug]"
         exit 1
