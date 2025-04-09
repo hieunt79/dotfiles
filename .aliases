@@ -16,6 +16,12 @@ alias less="less -S "
 alias les="less -S "
 alias le="less -S "
 
+# Git aliases
+alias ga='git add'
+alias gc='git commit --verbose'
+alias gcmsg='git commit --message'
+alias glog='git log --oneline --decorate --graph'
+alias gst='git status'
 
 alias ovn-nbctl="docker exec -ti ovn_nb_db ovn-nbctl --no-leader-only"
 alias ovn-sbctl="docker exec -ti ovn_sb_db ovn-sbctl --no-leader-only"
@@ -32,13 +38,13 @@ export DEBIAN_FRONTEND=noninteractive
 SOURCE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 VIMCONFIG="$SOURCE_DIR/vimrc"
 if [[ -f $VIMCONFIG ]]; then
-    alias vim="vim -u $VIMCONFIG"
+    alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
 elif [[ -L $VIMCONFIG ]]; then
-    alias vim="vim -u $VIMCONFIG"
+    alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
 fi
 VIMCONFIG="$SOURCE_DIR/.vimrc"
 if [[ -f $VIMCONFIG ]]; then
-    alias vim="vim -u $VIMCONFIG"
+    alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
 elif [[ -L $VIMCONFIG ]]; then
-    alias vim="vim -u $VIMCONFIG"
+    alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
 fi
