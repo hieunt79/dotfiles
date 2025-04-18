@@ -56,6 +56,19 @@ set undoreload=10000
 set scrolloff=9
 "set scrolloff=9999
 
+" Learn from https://www.youtube.com/watch?v=XA2WjJbmmoM
+set path+=**
+set wildmenu
+
+" FILE BROWSING:
+"
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide.=
 
 """-----------------------------------------------------------
 """        Status line
@@ -126,6 +139,10 @@ endfunction
 
 nnoremap <leader>v :call ToggleVisualMode()<CR>
 
+" find - super effective command
+" Usage: if path and wildmenu is set, :find <file_name> will open the file for
+" u, you can also add * to search query like :find ipt*
+noremap <leader>f :find 
 
 " tabnew
 noremap <leader>tn :tabnew 
@@ -209,6 +226,7 @@ set copyindent              " Indent according to previous line.
 set expandtab               " Use spaces instead of tabs.
 "autocmd BufRead,BufNewFile *.c,*.h setlocal cindent
 autocmd FileType c setlocal autoindent | setlocal noexpandtab
+autocmd FileType markdown setlocal tabstop=2 | setlocal shiftwidth=2 | setlocal softtabstop=2
 
 
 """-----------------------------------------------------------
@@ -260,7 +278,7 @@ noremap <leader>ts :%s/\s\+$//g
 vnoremap <leader>T :!column -t <cr>
 vnoremap <leader>= :s/ = /=/<cr>
 
-noremap <leader>ft :set filetype=
+noremap <leader>FT :set filetype=
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 "nnoremap j gj
@@ -364,8 +382,8 @@ if exists('g:plugs')
     ""let ayucolor="dark"   " for dark version of ayu theme
 
     colorscheme gruvbox
-    set background=dark   " for dark ver of gruvbox
-    "set background=light   " for light ver of gruvbox
+    "set background=dark   " for dark ver of gruvbox
+    set background=light   " for light ver of gruvbox
 
     nnoremap <leader>gb :Git blame<cr>
     nnoremap <leader>gs :Git <cr>

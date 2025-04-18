@@ -23,11 +23,15 @@ alias gcmsg='git commit --message'
 alias glog='git log --oneline --decorate --graph'
 alias gst='git status'
 
+# Aliases for OVN trace
 alias ovn-nbctl="docker exec -ti ovn_nb_db ovn-nbctl --no-leader-only"
 alias ovn-sbctl="docker exec -ti ovn_sb_db ovn-sbctl --no-leader-only"
+alias ovn-trace="docker exec -ti ovn_sb_db ovn-trace --no-leader-only"
 alias ovs-ofctl="docker exec -ti openvswitch_vswitchd ovs-ofctl"
 alias ovs-vsctl="docker exec -ti openvswitch_vswitchd ovs-vsctl"
 alias ovs-appctl="docker exec -ti openvswitch_vswitchd ovs-appctl"
+alias ovs-tcpundump="docker exec -ti openvswitch_vswitchd ovs-tcpundump"
+alias ovn-detrace="docker exec -ti ovn_nb_db ovn-detrace"
 
 alias virsh="docker exec -ti nova_libvirt virsh"
 
