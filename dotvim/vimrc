@@ -148,10 +148,10 @@ nnoremap <leader>v :call ToggleVisualMode()<CR>
 " find - super effective command
 " Usage: if path and wildmenu is set, :find <file_name> will open the file for
 " u, you can also add * to search query like :find ipt*
-noremap <leader>f :find 
+noremap <leader>f :tabnew<CR>:edit .<CR>:find 
 
 " tabnew
-noremap <leader>tn :tabnew 
+noremap <leader>tn :tabnew<CR>:edit .<CR>
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
@@ -374,6 +374,11 @@ if exists('g:plugs')
     nnoremap <leader>tr :NERDTreeToggle<cr>
     nnoremap <leader>tf :NERDTreeFocus<cr>
     "noremap <leader>tr :NERDTree<cr>
+
+    " :find
+    noremap <leader>f :tabnew<CR>:NERDTreeToggle<CR><C-W><C-W>:find 
+    " tabnew
+    noremap <leader>tn :tabnew<CR>:NERDTree<CR>
 
     let g:lightline = {'colorscheme' : 'ayu'}
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
