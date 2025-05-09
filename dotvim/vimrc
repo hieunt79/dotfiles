@@ -7,105 +7,6 @@ silent! source ~/.vim/plugins.vim
 silent! source ~/.vim/syntax/*
 
 """-----------------------------------------------------------
-"""        Setting attributes
-"""-----------------------------------------------------------
-"""
-
-" You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
-" We set it explicitely to make our position clear!
-set nocompatible
-
-set encoding=utf-8
-set fileencoding=utf-8
-
-syntax on                  " Enable syntax highlighting.
-colorscheme default
-
-set showmode                " Show current mode in command-line.
-set showcmd                 " Show already typed keys when more are expected.
-
-set splitbelow              " Open new windows below the current window.
-set splitright              " Open new windows right of the current window.
-
-set ruler                   " show cursor position
-
-set magic                   " For regular expressions turn magic on
-
-set wrapscan                " Searches wrap around end-of-file.
-
-set report=0                " Always report changed lines.
-
-"set mouse=a                " To enable mouse support
-
-set mouse=                  " To disable mouse support
-
-" set highlight search
-set noswapfile " disable the swapfile
-set hlsearch " highlight all results
-set ignorecase " ignore case in search
-set incsearch                   " show search results as you type
-set showmatch                   " show matching brackets/parenthesis
-
-" Persistent undo
-" Don't forget mkdir folder $HOME/.local/share/nvim/undo
-set undofile
-set undodir=$HOME/.local/share/vim/undo
-set undolevels=1000
-set undoreload=10000
-
-set scrolloff=9
-"set scrolloff=9999
-
-" Learn from https://www.youtube.com/watch?v=XA2WjJbmmoM
-set path+=**
-set wildmenu
-
-" FILE BROWSING:
-"
-" Tweaks for browsing
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-
-let g:netrw_preview=1          " Enable preview mode
-let g:netrw_alto=0             " Use vertical split for preview
-let g:netrw_altv=1             " open splits to the right
-
-let g:netrw_browse_split=0     "will open files in the same window with netrw
-let g:netrw_winsize=15 "sets width of the directory explorer to 15% of the page·
-
-" Auto Explore when vim without any file
-autocmd VimEnter * if argc() == 0 | vertical Explore | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && &filetype == 'netrw' | quit | endif
-
-" find - super effective command
-" Usage: if path and wildmenu is set, :find <file_name> will open the file for u, you can also add * to search query like :find ipt*
-noremap <leader>f :tabnew<CR>:vertical edit .<CR>:find·
-
-" tabnew
-noremap <leader>tn :tabnew<CR>:vertical edit .<CR>
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-"""-----------------------------------------------------------
-"""        Status line
-"""-----------------------------------------------------------
-"""
-
-" Hide by default
-set laststatus=1
-
-" Format the status line
-"set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
-set statusline=\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
-
-"""-----------------------------------------------------------
 """        keymap custom
 """-----------------------------------------------------------
 """
@@ -185,7 +86,7 @@ noremap <leader>h :noh<cr>
 " In byobu, C-A is used for window management, so let change to <leader>a;
 " Example for using C-A in vim:
 " - https://www.reddit.com/r/vim/comments/av24za/til_about_gca/
-noremap <leader>a g<C-A>
+vnoremap <leader>a g<C-a>
 
 " Retab
 nnoremap <leader>rt :retab<cr>
@@ -199,6 +100,104 @@ set hidden
 nnoremap <Leader>bb :buffers<CR>:buffer<Space>
 nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>bp :bprevious<CR>
+
+"""-----------------------------------------------------------
+"""        Setting attributes
+"""-----------------------------------------------------------
+"""
+
+" You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
+" We set it explicitely to make our position clear!
+set nocompatible
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+syntax on                  " Enable syntax highlighting.
+colorscheme default
+
+set showmode                " Show current mode in command-line.
+set showcmd                 " Show already typed keys when more are expected.
+
+set splitbelow              " Open new windows below the current window.
+set splitright              " Open new windows right of the current window.
+
+set ruler                   " show cursor position
+
+set magic                   " For regular expressions turn magic on
+
+set wrapscan                " Searches wrap around end-of-file.
+
+set report=0                " Always report changed lines.
+
+"set mouse=a                " To enable mouse support
+set mouse=                  " To disable mouse support
+
+" set highlight search
+set noswapfile " disable the swapfile
+set hlsearch " highlight all results
+set ignorecase " ignore case in search
+set incsearch                   " show search results as you type
+set showmatch                   " show matching brackets/parenthesis
+
+" Persistent undo
+" Don't forget mkdir folder $HOME/.local/share/nvim/undo
+set undofile
+set undodir=$HOME/.local/share/vim/undo
+set undolevels=1000
+set undoreload=10000
+
+set scrolloff=9
+"set scrolloff=9999
+
+" Learn from https://www.youtube.com/watch?v=XA2WjJbmmoM
+set path+=**
+set wildmenu
+
+" FILE BROWSING:
+"
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+
+let g:netrw_preview=1          " Enable preview mode
+let g:netrw_alto=0             " Use vertical split for preview
+let g:netrw_altv=1             " open splits to the right
+
+let g:netrw_browse_split=0     "will open files in the same window with netrw
+let g:netrw_winsize=15 "sets width of the directory explorer to 15% of the page·
+
+" Auto Explore when vim without any file
+autocmd VimEnter * if argc() == 0 | vertical Explore | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && &filetype == 'netrw' | quit | endif
+
+" find - super effective command
+" Usage: if path and wildmenu is set, :find <file_name> will open the file for u, you can also add * to search query like :find ipt*
+noremap <leader>f :tabnew<CR>:vertical edit .<CR>:find·
+
+" tabnew
+noremap <leader>tn :tabnew<CR>:vertical edit .<CR>
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+"""-----------------------------------------------------------
+"""        Status line
+"""-----------------------------------------------------------
+"""
+
+" Hide by default
+set laststatus=1
+
+" Format the status line
+"set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
+set statusline=\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
 
 """-----------------------------------------------------------
 """        indentation and tab relate
@@ -298,6 +297,10 @@ noremap <leader>FT :set filetype=
 " Wrapped lines goes down/up to next row, rather than next line in file.
 "nnoremap j gj
 "nnoremap k gk
+
+"""-----------------------------------------------------------
+"""        Tab bar config
+"""-----------------------------------------------------------
 
 " showtabline=1 to show tabline only when more than one tab is present
 " showtabline=2 to always show tabline
