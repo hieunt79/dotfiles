@@ -64,18 +64,28 @@ set wildmenu
 "
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 
-let g:netrw_preview = 1          " Enable preview mode
-let g:netrw_alto = 0             " Use vertical split for preview
-let g:netrw_altv=1          " open splits to the right
+let g:netrw_preview=1          " Enable preview mode
+let g:netrw_alto=0             " Use vertical split for preview
+let g:netrw_altv=1             " open splits to the right
 
-let g:netrw_browse_split=2 "will open files vertically
-let g:netrw_winsize=15 "sets width of the directory explorer to 15% of the page
+let g:netrw_browse_split=0     "will open files in the same window with netrw
+let g:netrw_winsize=15 "sets width of the directory explorer to 15% of the page·
 
+" Auto Explore when vim without any file
+autocmd VimEnter * if argc() == 0 | vertical Explore | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && &filetype == 'netrw' | quit | endif
+
+" find - super effective command
+" Usage: if path and wildmenu is set, :find <file_name> will open the file for u, you can also add * to search query like :find ipt*
+noremap <leader>f :tabnew<CR>:vertical edit .<CR>:find·
+
+" tabnew
+noremap <leader>tn :tabnew<CR>:vertical edit .<CR>
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -151,14 +161,6 @@ function! ToggleVisualMode()
 endfunction
 
 nnoremap <leader>v :call ToggleVisualMode()<CR>
-
-" find - super effective command
-" Usage: if path and wildmenu is set, :find <file_name> will open the file for
-" u, you can also add * to search query like :find ipt*
-noremap <leader>f :tabnew<CR>:edit .<CR>:find 
-
-" tabnew
-noremap <leader>tn :tabnew<CR>:edit .<CR>
 
 " set wrap on the fly
 set wrap    " set wrap on the fly
@@ -401,7 +403,7 @@ if exists('g:plugs')
     " :find
     noremap <leader>f :tabnew<CR>:find 
     " tabnew
-    noremap <leader>tn :tabnew<CR>
+    noremap <leader>tn :tabnew<CR><C-W><C-W>
 
     " Colorscheme
     let g:lightline = {'colorscheme' : 'ayu'}
