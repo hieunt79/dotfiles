@@ -68,7 +68,14 @@ let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
-"let g:netrw_list_hide.=
+
+let g:netrw_preview = 1          " Enable preview mode
+let g:netrw_alto = 0             " Use vertical split for preview
+let g:netrw_altv=1          " open splits to the right
+
+let g:netrw_browse_split=2 "will open files vertically
+let g:netrw_winsize=15 "sets width of the directory explorer to 15% of the page
+
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -374,12 +381,29 @@ if exists('g:plugs')
     nnoremap <leader>tr :NERDTreeToggle<cr>
     nnoremap <leader>tf :NERDTreeFocus<cr>
     "noremap <leader>tr :NERDTree<cr>
+    " Default show hidden files folder
+    let NERDTreeShowHidden=1
+    "let NERDTreeFileLines=1
+
+    "autocmd VimEnter * NERDTree
+    " Start NERDTree. If a file is specified, move the cursor to its window.
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+    " Open the existing NERDTree on each new tab.
+    autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+    " Exit Vim if NERDTree is the only window remaining in the only tab.
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+    " Close the tab if NERDTree is the only window remaining in it.
+    autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
     " :find
-    noremap <leader>f :tabnew<CR>:NERDTreeToggle<CR><C-W><C-W>:find 
+    noremap <leader>f :tabnew<CR>:find 
     " tabnew
-    noremap <leader>tn :tabnew<CR>:NERDTree<CR>
+    noremap <leader>tn :tabnew<CR>
 
+    " Colorscheme
     let g:lightline = {'colorscheme' : 'ayu'}
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -388,9 +412,9 @@ if exists('g:plugs')
     "colorscheme horizon
 
     "colorscheme ayu
-    ""let ayucolor="light"  " for light version of ayu theme
-    "let ayucolor="mirage" " for mirage version of ayu theme
-    ""let ayucolor="dark"   " for dark version of ayu theme
+    "let ayucolor="light"  " for light version of ayu theme
+    "let ayucolor="mirage"  " for mirage version of ayu theme
+    "let ayucolor="dark"   " for dark version of ayu theme
 
     colorscheme gruvbox
     "set background=dark   " for dark ver of gruvbox
@@ -422,8 +446,5 @@ if exists('g:plugs')
     "inoremap {<CR> {<CR>}<ESC>O
     "inoremap {;<CR> {<CR>};<ESC>O
 
-    " Start NERDTree. If a file is specified, move the cursor to its window.
-    "autocmd StdinReadPre * let s:std_in=1
-    "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 endif
 
