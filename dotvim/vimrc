@@ -6,6 +6,11 @@ silent! source ~/.vim/autoload/plug.vim
 silent! source ~/.vim/plugins.vim
 silent! source ~/.vim/syntax/*
 
+" You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
+" We set it explicitely to make our position clear!
+set nocompatible
+
+
 """-----------------------------------------------------------
 """        keymap custom
 """-----------------------------------------------------------
@@ -105,10 +110,6 @@ nnoremap <Leader>bp :bprevious<CR>
 """        Setting attributes
 """-----------------------------------------------------------
 """
-
-" You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
-" We set it explicitely to make our position clear!
-set nocompatible
 
 set encoding=utf-8
 set fileencoding=utf-8
