@@ -73,7 +73,7 @@ set wrap    " set wrap on the fly
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
-noremap <leader>rl :so ~/.vimrc<CR>:echo "Config reloaded"<cr>
+noremap <leader>rr :so ~/.vimrc<CR>:echo "Config reloaded"<cr>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
