@@ -87,7 +87,7 @@ function install_zsh {
     echo "Installing zshrc"
     # install zshrc
     if [[ $DEV_ENABLE == "true" ]]; then
-        ZSH_PATH=".oh-my-zsh"
+        ZSH_PATH=".zim"
         if [ -d $HOME/$ZSH_PATH ]; then
             if [ -f "$HOME/.zshrc" ]; then
                 rm -f $HOME/.zshrc.old
@@ -97,7 +97,7 @@ function install_zsh {
                 rm -f $HOME/.zshrc
                 ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
             fi
-            cp $SCRIPT_PATH/$ZSH_PATH/themes/* $HOME/$ZSH_PATH/themes/
+            #cp $SCRIPT_PATH/$ZSH_PATH/themes/* $HOME/$ZSH_PATH/themes/
         fi
     fi
 }
