@@ -1,6 +1,11 @@
 #!/usr/bin/zsh
 
 alias docker="sudo docker"
+alias apt="sudo apt"
+
+alias dotbackup="~/03-scripts/dotbackup.sh"
+
+alias cat="batcat"
 
 # Easier navigation: .., ..., ...., ~
 alias ..="cd .."

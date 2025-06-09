@@ -16,8 +16,8 @@ set nocompatible
 """-----------------------------------------------------------
 """
 
-let mapleader = ","
-map ' ' <leader>
+let mapleader = " "
+map , <Leader>
 
 vnoremap < <gv
 vnoremap > >gv
@@ -55,7 +55,7 @@ function! ToggleVisualMode()
         " smart cursorline
         autocmd InsertLeave,WinEnter * set cursorline
         autocmd InsertEnter,WinLeave * set nocursorline
-
+        echo "Set visal: Visual mode ON"
     else
         set norelativenumber
         set nonumber
@@ -63,6 +63,7 @@ function! ToggleVisualMode()
         set nocursorline
         autocmd! InsertLeave,WinEnter * set cursorline
         autocmd! InsertEnter,WinLeave * set nocursorline
+        echo "Set visal: Visual mode OFF"
     endif
 endfunction
 
@@ -73,7 +74,7 @@ set wrap    " set wrap on the fly
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
 
 " Reload config
-noremap <leader>rr :so ~/.vimrc<CR>:echo "Config reloaded"<cr>
+noremap <leader>rr :so ~/.vimrc<CR>:echo "Config RELOADED"<cr>
 
 " Make Ctrl-w undoable
 inoremap <C-w> <C-g>u<C-w>
@@ -209,7 +210,7 @@ set statusline=\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Fil
 " E.g: If filetype is c, it autoloads the cindent, and not obey my default
 " indent.
 filetype plugin indent on  " Load plugins according to detected filetype.
-"filetype indent on  " Load indent according to detected filetype.
+filetype indent on  " Load indent according to detected filetype.
 
 " display indentation guides
 " Ref: https://stackoverflow.com/a/2159997
@@ -217,34 +218,43 @@ set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
 " Disable paste for using supertab plugin
 function! TogglePasteMode()
-  if &paste
+  if &paste && &autoindent
     set nopaste
-    echo "Set nopaste"
+    echo "Set nopaste: Paste mode OFF"
+
+    " set paste
+    set tabstop=4
+    set softtabstop=4          " Tab key indents by 4 spaces.
+    set shiftwidth=4          " >> indents by 4 spaces.
+    set shiftround              " >> indents to next multiple of 'shiftwidth'.
+    set expandtab               " Use spaces instead of tabs.
+
+    set smarttab                " Be smart when using tabs ;)
+    set autoindent              " Auto indent with tab
+    set smartindent
+    set copyindent              " Indent according to previous line.
+
   else
     set paste
     set expandtab               " Use spaces instead of tabs.
-    echo "Set paste"
+    echo "Set: paste mode ON"
   endif
 endfunction
 nnoremap <leader>p :call TogglePasteMode()<CR>
 
 set paste
-set tabstop=4
-set softtabstop=4          " Tab key indents by 4 spaces.
-set shiftwidth=4          " >> indents by 4 spaces.
-set shiftround              " >> indents to next multiple of 'shiftwidth'.
 set expandtab               " Use spaces instead of tabs.
+set noautoindent               " Use spaces instead of tabs.
 
-set smarttab                " Be smart when using tabs ;)
-set autoindent              " Auto indent with tab
-set smartindent
-set copyindent              " Indent according to previous line.
-
-set expandtab               " Use spaces instead of tabs.
 "autocmd BufRead,BufNewFile *.c,*.h setlocal cindent
-autocmd FileType c setlocal autoindent | setlocal noexpandtab
+"autocmd FileType c setlocal autoindent | setlocal noexpandtab
 autocmd FileType markdown setlocal tabstop=2 | setlocal shiftwidth=2 | setlocal softtabstop=2
+autocmd FileType * setlocal noautoindent " Fallback: disable all autoindent by vim filetype indent on
 
+" There are a wonderful explaination for autoindent
+" https://stackoverflow.com/a/18671756
+" You can also check the last position that config some options by calling:
+" :verbose set autoindent?
 
 """-----------------------------------------------------------
 """        other config
@@ -436,9 +446,6 @@ if exists('g:plugs')
     nnoremap <leader>gp :Git push<cr>
     nnoremap <leader>gd :Git diff<cr>
     nnoremap <leader>gg :GitGutter<cr>
-
-    set nopaste
-    set expandtab
 
     set relativenumber
     set number
