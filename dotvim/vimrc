@@ -107,6 +107,11 @@ nnoremap <Leader>bb :buffers<CR>:buffer<Space>
 nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>bp :bprevious<CR>
 
+" Key map for prometheus metrics management"
+nnoremap <leader>c1 :%s/container_name/"container_name"/g<cr>:%s/countrynamesrc/"countrynamesrc"/g<cr>:%s/src=/"IP":/g<cr>
+vnoremap <leader>c2 :s/$/,/<cr>
+nnoremap <leader>c3 :%s/=/:/g<cr>
+
 """-----------------------------------------------------------
 """        Setting attributes
 """-----------------------------------------------------------

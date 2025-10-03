@@ -5,7 +5,7 @@ alias apt="sudo apt"
 
 alias dotbackup="~/03-scripts/dotbackup.sh"
 
-alias cat="batcat"
+alias cat="batcat --theme=gruvbox-light"
 
 # Easier navigation: .., ..., ...., ~
 alias ..="cd .."
@@ -43,7 +43,12 @@ alias virsh="docker exec -ti nova_libvirt virsh"
 
 alias ops="openstack "
 
+export EDITOR=vim
 export DEBIAN_FRONTEND=noninteractive
+export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin"
+
+# without this, vim-gtk3 can not use unnameplus register to copy
+export DISPLAY=:0
 
 SOURCE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 VIMCONFIG="$SOURCE_DIR/vimrc"
@@ -58,3 +63,4 @@ if [[ -f $VIMCONFIG ]]; then
 elif [[ -L $VIMCONFIG ]]; then
     alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
 fi
+
