@@ -52,15 +52,19 @@ function! ToggleVisualMode()
         set number
         set laststatus=2
         set cursorline
+        set cursorcolumn
         " smart cursorline
         autocmd InsertLeave,WinEnter * set cursorline
+        autocmd InsertLeave,WinEnter * set cursorcolumn
         autocmd InsertEnter,WinLeave * set nocursorline
+        autocmd InsertEnter,WinLeave * set nocursorcolumn
         echo "Set visal: Visual mode ON"
     else
         set norelativenumber
         set nonumber
         set laststatus=1
         set nocursorline
+        set nocursorcolumn
         autocmd! InsertLeave,WinEnter * set cursorline
         autocmd! InsertEnter,WinLeave * set nocursorline
         echo "Set visal: Visual mode OFF"
@@ -457,6 +461,7 @@ if exists('g:plugs')
 
     set laststatus=2
     set cursorline
+    set cursorcolumn
 
     "inoremap " ""<left>
     "inoremap ' ''<left>
@@ -465,6 +470,7 @@ if exists('g:plugs')
     "inoremap { {}<left>
     "inoremap {<CR> {<CR>}<ESC>O
     "inoremap {;<CR> {<CR>};<ESC>O
-
+else
+    colorscheme morning
 endif
 
