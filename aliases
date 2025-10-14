@@ -46,6 +46,7 @@ alias ops="openstack "
 export EDITOR=vim
 export DEBIAN_FRONTEND=noninteractive
 export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin"
+export CLIFF_FIT_WIDTH=1 # for OpenStack CLI fit width
 
 # without this, vim-gtk3 can not use unnameplus register to copy
 export DISPLAY=:0

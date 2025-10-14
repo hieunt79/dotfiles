@@ -30,7 +30,7 @@ function install_vim {
     SCRIPT_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
     DEV_ENABLE=$1
 
-    VIM_PATH="dotvim"
+    VIM_PATH="vimrc"
     if [ ! -d "$HOME/.vim" ]; then
         mkdir -p $HOME/.vim
     else
@@ -42,6 +42,7 @@ function install_vim {
     ln -s $SCRIPT_PATH/$VIM_PATH/vimrc $HOME/.vim/vimrc
     #
     if [[ $DEV_ENABLE == "true" ]]; then
+        echo "    - Installing vim plugins"
         ln -s $SCRIPT_PATH/$VIM_PATH/plugins.vim $HOME/.vim/plugins.vim
         ln -s $SCRIPT_PATH/$VIM_PATH/syntax $HOME/.vim/syntax
     fi
@@ -71,31 +72,35 @@ function install_vim {
 
 function install_aliases {
     echo "Installing aliases"
+    ALIAS_FILENAME="aliases"
     # install aliases
     if [ -f "$HOME/.aliases" ]; then
         rm -f $HOME/.aliases.old
         mv $HOME/.aliases $HOME/.aliases.old
-        ln -s $SCRIPT_PATH/.aliases $HOME/.aliases
+        ln -s $SCRIPT_PATH/$ALIAS_FILENAME $HOME/.aliases
     else
         rm -f $HOME/.aliases
-        ln -s $SCRIPT_PATH/.aliases $HOME/.aliases
+        ln -s $SCRIPT_PATH/$ALIAS_FILENAME $HOME/.aliases
     fi
 
 }
 
 function install_zsh {
-    echo "Installing zshrc"
     # install zshrc
+    # Install zim: https://zimfw.sh/docs/install/
+    # curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
     if [[ $DEV_ENABLE == "true" ]]; then
-        ZSH_PATH=".zim"
+        ZSH_PATH=".zim" # only install if zim is installed
+        ZSH_CONF_FILE="zshrc"
         if [ -d $HOME/$ZSH_PATH ]; then
+            echo "Installing zshrc"
             if [ -f "$HOME/.zshrc" ]; then
                 rm -f $HOME/.zshrc.old
                 mv $HOME/.zshrc $HOME/.zshrc.old
-                ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
+                ln -s $SCRIPT_PATH/$ZSH_CONF_FILE $HOME/.zshrc
             else
                 rm -f $HOME/.zshrc
-                ln -s $SCRIPT_PATH/.zshrc $HOME/.zshrc
+                ln -s $SCRIPT_PATH/$ZSH_CONF_FILE $HOME/.zshrc
             fi
             #cp $SCRIPT_PATH/$ZSH_PATH/themes/* $HOME/$ZSH_PATH/themes/
         fi
