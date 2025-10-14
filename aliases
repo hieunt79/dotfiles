@@ -64,4 +64,11 @@ if [[ -f $VIMCONFIG ]]; then
 elif [[ -L $VIMCONFIG ]]; then
     alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
 fi
+# use vim without bootstrap, by `source this file`
+VIMCONFIG="$SOURCE_DIR/vimrc/vimrc"
+if [[ -f $VIMCONFIG ]]; then
+    alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
+elif [[ -L $VIMCONFIG ]]; then
+    alias vim="vim --startuptime /tmp/vim -u $VIMCONFIG"
+fi
 
