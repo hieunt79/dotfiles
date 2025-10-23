@@ -343,7 +343,7 @@ function! MyTabLine() " acclamation to avoid conflict
         let s .= '%' . (t + 1) . 'T'
         let s .= ' '
         " set page number string
-        let s .= t + 1 . ' '
+        let s .= '['. (t + 1) . ']'
         " get buffer names and statuses
         let n = ''      " temp string for buffer names while we loop and check buftype
         let m = 0       " &modified counter
@@ -357,7 +357,9 @@ function! MyTabLine() " acclamation to avoid conflict
             elseif getbufvar( b, "&buftype"  ) == 'quickfix'
                 let n .= '[Q]'
             else
-                let n .= pathshorten(bufname(b))
+                " let n .= pathshorten(bufname(b))
+                let buf = substitute(pathshorten(bufname(b)), '^NERD_tree_tab_.', '', '')
+                let n .= buf
             endif
             " check and ++ tab's &modified count
             if getbufvar( b, "&modified"  )
@@ -434,6 +436,10 @@ if exists('g:plugs')
     let g:lightline = {'colorscheme' : 'ayu'}
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+    " let g:airline_theme='simple'
+    let g:airline_theme='solarized'
+    let g:airline_solarized_bg='light'
 
     set termguicolors
     "colorscheme horizon

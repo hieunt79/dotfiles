@@ -6,6 +6,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'preservim/nerdtree'
   Plug 'ayu-theme/ayu-vim'
   Plug 'tpope/vim-fugitive'
