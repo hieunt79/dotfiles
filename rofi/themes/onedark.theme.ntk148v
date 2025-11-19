@@ -1,0 +1,62 @@
+configuration {
+  show-icons: true;
+  font: "Monaco 10";
+  modi: "window,run,drun";
+}
+
+* {
+  background: #282c34;
+  foreground: #abb2bf;
+  background-color: @background;
+  selected-normal-foreground: @foreground;
+  selected-normal-background: #98c379;
+  selected-urgent-background: #e5c07b;
+  selected-urgent-foreground: @foreground;
+  border: 5;
+  lines: 12;
+  padding: 0;
+  margin: 0;
+  spacing: 0;
+}
+
+window {
+  width: 50%;
+  height: 50%;
+  transparency: "real";
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+listview {
+  columns: 1;
+}
+
+element {
+  padding: 12;
+  orientation: vertical;
+  text-color: @foreground;
+}
+
+element selected {
+  background-color: @selected-normal-background;
+  text-color: @background;
+}
+
+inputbar {
+  background-color: @background;
+  children: [prompt, entry];
+}
+
+prompt {
+  enabled: true;
+  font: "Monaco 10";
+  padding: 12 0 0 12;
+  text-color: @selected-urgent-background;
+}
+
+entry {
+  padding: 12;
+  text-color: @selected-urgent-background;
+}

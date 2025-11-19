@@ -28,6 +28,7 @@ function main {
     install_aliases
     install_zsh $DEV_ENABLE
     install_alacritty $GRAPHIC_ENABLE
+    install_i3 $GRAPHIC_ENABLE
 }
 
 function install_vim {
@@ -137,6 +138,57 @@ function install_alacritty {
             mv "$CONFIG_DIR/themes" "$CONFIG_DIR/themes.old"
         fi
         ln -s "$SCRIPT_PATH/$ALACRITTY_PATH/themes" "$CONFIG_DIR/themes"
+    fi
+}
+
+function install_i3 {
+    GRAPHIC_ENABLE=$1
+    if [[ $GRAPHIC_ENABLE == "true" ]]; then
+        echo "Installing i3 and dependencies"
+        
+        # Install packages
+        if command -v apt &> /dev/null; then
+            echo "  - Installing packages via apt"
+            sudo apt install -y i3 hsetroot polybar feh imagemagick picom dunst rofi i3lock
+        else
+            echo "  - apt not found, skipping package installation. Please install: i3 hsetroot polybar feh imagemagick picom dunst rofi i3lock"
+        fi
+
+        # Link configs
+        CONFIG_DIR="$HOME/.config"
+        mkdir -p "$CONFIG_DIR"
+
+        # i3
+        echo "  - Linking i3 config"
+        if [ -d "$CONFIG_DIR/i3" ]; then
+            rm -rf "$CONFIG_DIR/i3.old"
+            mv "$CONFIG_DIR/i3" "$CONFIG_DIR/i3.old"
+        fi
+        ln -s "$SCRIPT_PATH/i3" "$CONFIG_DIR/i3"
+
+        # polybar
+        echo "  - Linking polybar config"
+        if [ -d "$CONFIG_DIR/polybar" ]; then
+            rm -rf "$CONFIG_DIR/polybar.old"
+            mv "$CONFIG_DIR/polybar" "$CONFIG_DIR/polybar.old"
+        fi
+        ln -s "$SCRIPT_PATH/polybar" "$CONFIG_DIR/polybar"
+
+        # picom
+        echo "  - Linking picom config"
+        if [ -d "$CONFIG_DIR/picom" ]; then
+            rm -rf "$CONFIG_DIR/picom.old"
+            mv "$CONFIG_DIR/picom" "$CONFIG_DIR/picom.old"
+        fi
+        ln -s "$SCRIPT_PATH/picom" "$CONFIG_DIR/picom"
+
+        # rofi
+        echo "  - Linking rofi config"
+        if [ -d "$CONFIG_DIR/rofi" ]; then
+            rm -rf "$CONFIG_DIR/rofi.old"
+            mv "$CONFIG_DIR/rofi" "$CONFIG_DIR/rofi.old"
+        fi
+        ln -s "$SCRIPT_PATH/rofi" "$CONFIG_DIR/rofi"
     fi
 }
 
