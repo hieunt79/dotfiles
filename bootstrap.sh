@@ -8,20 +8,26 @@ fi
 function main {
     if [ "$#" -lt 1 ]; then
         echo ""
-        echo "Pls $0 dev|server [--debug]"
+        echo "Pls $0 dev|server|graphic [--debug]"
         exit 1
     fi
-    dev_enable=$1
+    mode=$1
 
-    if [[ $dev_enable == "dev" ]]; then
+    if [[ $mode == "dev" ]]; then
         DEV_ENABLE="true"
+        GRAPHIC_ENABLE="false"
+    elif [[ $mode == "graphic" ]]; then
+        DEV_ENABLE="true"
+        GRAPHIC_ENABLE="true"
     else
         DEV_ENABLE="false"
+        GRAPHIC_ENABLE="false"
     fi
 
     install_vim $DEV_ENABLE
     install_aliases
     install_zsh $DEV_ENABLE
+    install_alacritty $GRAPHIC_ENABLE
 }
 
 function install_vim {
@@ -104,6 +110,33 @@ function install_zsh {
             fi
             #cp $SCRIPT_PATH/$ZSH_PATH/themes/* $HOME/$ZSH_PATH/themes/
         fi
+    fi
+}
+
+function install_alacritty {
+    GRAPHIC_ENABLE=$1
+    if [[ $GRAPHIC_ENABLE == "true" ]]; then
+        echo "Installing alacritty"
+        ALACRITTY_PATH="alacritty"
+        CONFIG_DIR="$HOME/.config/alacritty"
+
+        if [ ! -d "$CONFIG_DIR" ]; then
+            mkdir -p "$CONFIG_DIR"
+        fi
+
+        # install alacritty.toml
+        if [ -f "$CONFIG_DIR/alacritty.toml" ]; then
+            rm -f "$CONFIG_DIR/alacritty.toml.old"
+            mv "$CONFIG_DIR/alacritty.toml" "$CONFIG_DIR/alacritty.toml.old"
+        fi
+        ln -s "$SCRIPT_PATH/$ALACRITTY_PATH/alacritty.toml" "$CONFIG_DIR/alacritty.toml"
+
+        # install themes
+        if [ -d "$CONFIG_DIR/themes" ]; then
+            rm -rf "$CONFIG_DIR/themes.old"
+            mv "$CONFIG_DIR/themes" "$CONFIG_DIR/themes.old"
+        fi
+        ln -s "$SCRIPT_PATH/$ALACRITTY_PATH/themes" "$CONFIG_DIR/themes"
     fi
 }
 
