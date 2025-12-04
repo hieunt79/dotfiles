@@ -41,7 +41,7 @@ function install_vim {
     if [ ! -d "$HOME/.vim" ]; then
         mkdir -p $HOME/.vim
     else
-        rm -f $HOME/.vim.old
+        rm -rf $HOME/.vim.old
         mv $HOME/.vim $HOME/.vim.old
         mkdir -p $HOME/.vim
     fi

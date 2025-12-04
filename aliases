@@ -5,7 +5,7 @@ alias apt="sudo apt"
 
 alias dotbackup="~/03-scripts/dotbackup.sh"
 
-alias cat="batcat --theme=gruvbox-light"
+alias bat="batcat --theme=gruvbox-light"
 
 # Easier navigation: .., ..., ...., ~
 alias ..="cd .."
@@ -15,6 +15,9 @@ alias ~="cd ~"
 
 #
 alias tailf="tail -f"
+
+#
+alias lla="ls -la"
 
 #
 alias less="less -S "
