@@ -379,7 +379,7 @@ function! MyTabLine() " acclamation to avoid conflict
         " my default highlighting only underlines the active tab
         " buffer names.
         if t + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
+            let s .= '%#TabLineSel#' . '*'
         else
             let s .= '%#TabLine#'
         endif
