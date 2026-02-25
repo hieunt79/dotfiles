@@ -95,12 +95,14 @@ function install_aliases {
 function install_zsh {
     # install zshrc
     # Install zsh and zim in Ubuntu
-    if [[ $(dpkg -l | grep zsh ) ]]; then
-        echo "    zsh is already installed";
+    if [[ $(echo $SHELL | grep zsh ) ]]; then
+        echo "    - Zsh is already your default shell";
     else
-        echo "    Installing zsh"
+        echo "    - Installing zsh"
         export DEBIAN_FRONTEND=noninteractive
         sudo apt install zsh -y
+        echo "    - Installing zim"
+        chsh -s $(which zsh)
         curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
     fi
     # Install zim: https://zimfw.sh/docs/install/
