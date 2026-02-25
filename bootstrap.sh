@@ -94,8 +94,16 @@ function install_aliases {
 
 function install_zsh {
     # install zshrc
+    # Install zsh and zim in Ubuntu
+    if [[ $(dpkg -l | grep zsh ) ]]; then
+        echo "    zsh is already installed";
+    else
+        echo "    Installing zsh"
+        export DEBIAN_FRONTEND=noninteractive
+        sudo apt install zsh -y
+        curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+    fi
     # Install zim: https://zimfw.sh/docs/install/
-    # curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
     if [[ $DEV_ENABLE == "true" ]]; then
         ZSH_PATH=".zim" # only install if zim is installed
         ZSH_CONF_FILE="zshrc"

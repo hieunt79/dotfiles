@@ -130,4 +130,4 @@ unset key
 # }}} End configuration added by Zim install
 
 
-. "$HOME/.local/bin/env"
+#. "$HOME/.local/bin/env"
