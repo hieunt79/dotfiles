@@ -102,7 +102,7 @@ function install_zsh {
         export DEBIAN_FRONTEND=noninteractive
         sudo apt install zsh -y
         echo "    - Installing zim"
-        chsh -s $(which zsh)
+        sudo chsh -s $(which zsh) $USER
         curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
     fi
     # Install zim: https://zimfw.sh/docs/install/
