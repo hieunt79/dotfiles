@@ -46,6 +46,10 @@ alias virsh="docker exec -ti nova_libvirt virsh"
 
 alias ops="openstack "
 
+# alias for k8s
+alias k="kubectl"
+alias miku="minikube"
+
 export EDITOR=vim
 export DEBIAN_FRONTEND=noninteractive
 export PATH="$PATH:$HOME/.local/bin:/usr/local/go/bin"
