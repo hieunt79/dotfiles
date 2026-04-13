@@ -130,4 +130,7 @@ unset key
 # }}} End configuration added by Zim install
 
 
-#. "$HOME/.local/bin/env"
+. "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

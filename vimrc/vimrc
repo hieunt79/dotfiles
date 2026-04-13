@@ -170,7 +170,7 @@ set wildmenu
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide=netrw_gitignore#Hide()
 
 let g:netrw_preview=1          " Enable preview mode
 let g:netrw_alto=0             " Use vertical split for preview
