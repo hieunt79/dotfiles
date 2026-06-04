@@ -25,6 +25,7 @@ alias les="less -S "
 alias le="less -S "
 
 # Git aliases
+alias gar-tgz='git archive --format=tar.gz -o repo.tar.gz '
 alias ga='git add'
 alias gc='git commit --verbose'
 alias gcmsg='git commit --message'

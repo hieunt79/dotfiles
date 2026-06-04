@@ -130,7 +130,13 @@ unset key
 # }}} End configuration added by Zim install
 
 
-. "$HOME/.local/bin/env"
+# Detect the operating system
+OS=$(uname)
 
-# Added by Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+if [[ "$OS" == "Darwin" ]]; then
+  source "$HOME/.local/bin/env"
+  # Added by Antigravity
+  export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+  # Added by Antigravity IDE
+  export PATH="/Users/hieunt/.antigravity-ide/antigravity-ide/bin:$PATH"
+fi
