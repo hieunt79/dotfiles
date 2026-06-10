@@ -26,7 +26,7 @@ inoremap jj <ESC>
 inoremap kk <C-O>
 
 noremap <Leader>w :w<cr>
-noremap <Leader>q :q!<CR>
+noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
 "" set adaptive toggle number

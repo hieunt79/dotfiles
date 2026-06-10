@@ -1,5 +1,11 @@
 #!/usr/bin/zsh
 
+LOCAL_OS=$(uname)
+if [[ "$LOCAL_OS" == "Darwin" ]]; then
+  # to disable macOS from generating junk files when compressing archives
+  alias tar='COPYFILE_DISABLE=1 tar'
+fi
+
 alias docker="sudo docker"
 alias apt="sudo apt"
 
