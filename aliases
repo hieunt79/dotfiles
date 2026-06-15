@@ -23,7 +23,8 @@ alias ~="cd ~"
 alias tailf="tail -f"
 
 #
-alias lla="ls -la"
+alias lla="ls -la --color=always"
+alias ll="ls -l --color=always"
 
 #
 alias less="less -S "
@@ -52,6 +53,7 @@ alias ovn-detrace="docker exec -ti ovn_nb_db ovn-detrace"
 alias virsh="docker exec -ti nova_libvirt virsh"
 
 alias ops="openstack "
+alias tf="terraform "
 
 # alias for k8s
 alias k="kubectl"
