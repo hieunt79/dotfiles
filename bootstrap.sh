@@ -26,6 +26,7 @@ function main {
 
     install_vim $DEV_ENABLE
     install_aliases
+    install_less
     install_zsh $DEV_ENABLE
     install_alacritty $GRAPHIC_ENABLE
     install_i3 $GRAPHIC_ENABLE
@@ -89,7 +90,16 @@ function install_aliases {
         rm -f $HOME/.aliases
         ln -s $SCRIPT_PATH/$ALIAS_FILENAME $HOME/.aliases
     fi
+}
 
+function install_lesskey {
+    echo "Installing lesskey"
+    LESS_FILENAME=".lesskey"
+    # install aliases
+    if [ -f "$HOME/$LESS_FILENAME" ]; then
+        rm -s $HOME/$LESS_FILENAME
+        ln -s  $SCRIPT_PATH/lesskey $HOME/$LESS_FILENAME
+    fi
 }
 
 function install_zsh {

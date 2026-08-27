@@ -26,10 +26,13 @@ alias tailf="tail -f"
 alias lla="ls -la --color=always"
 alias ll="ls -l --color=always"
 
-#
-alias less="less -S "
-alias les="less -S "
-alias le="less -S "
+# less
+LESS_CONFIG_FILE="~/.lesskey"
+if [[ ! -f $LESS_CONFIG_FILE ]]; then
+    export LESS="-i -N -R -S --jump-target=4 --LONG-PROMPT --RAW-CONTROL-CHARS"
+fi
+alias les="less"
+alias le="less"
 
 # Git aliases
 alias gar-tgz='git archive --format=tar.gz -o repo.tar.gz '

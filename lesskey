@@ -1,0 +1,2 @@
+#env
+LESS = -i -N -R -S --jump-target=4 --LONG-PROMPT --RAW-CONTROL-CHARS
