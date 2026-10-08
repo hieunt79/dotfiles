@@ -52,6 +52,11 @@ function! ToggleVisualMode()
         set number
         set laststatus=2
         set cursorline
+        " Remove the default underline formatting
+        hi CursorLine cterm=NONE gui=NONE ctermbg=223 guibg=#ebdbb2
+        " Set the background color 
+        " (ctermbg is for terminal Vim, guibg is for GVim/truecolor terminals)
+        hi CursorColumn cterm=NONE gui=NONE ctermbg=223 guibg=#ebdbb2
         set cursorcolumn
         " smart cursorline
         autocmd InsertLeave,WinEnter * set cursorline
