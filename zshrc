@@ -146,3 +146,23 @@ if [[ "$OS" == "Darwin" ]]; then
   export PATH="$HOME/.cargo/env:$PATH"
 fi
 
+if [[ "$OS" == "Linux" ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+ 
+  # Added by Antigravity CLI installer
+  export PATH="/root/.local/bin:$PATH"
+
+  # opencode
+  export PATH=/root/.opencode/bin:$PATH
+  export PATH=/root/go/bin:$PATH
+
+  # fix glow LC
+  export LC_CTYPE="en_US.UTF-8"
+  alias pglow="glow -p"
+  alias tglow="glow -t"
+
+  # fix less config when using Zimrc
+  export LESS='--ignore-case --jump-target=4 --LONG-PROMPT --RAW-CONTROL-CHARS'
+fi
