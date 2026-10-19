@@ -4,6 +4,8 @@ if [[ ${@: -1} == "--debug" ]]; then
     set -x
 fi
 
+# Detect the operating system
+OS=$(uname)
 
 function main {
     if [ "$#" -lt 1 ]; then
@@ -50,6 +52,14 @@ function install_vim {
     ln -s $SCRIPT_PATH/$VIM_PATH/vimrc $HOME/.vim/vimrc
     #
     if [[ $DEV_ENABLE == "true" ]]; then
+        echo "    - Installing vim plugins's dependencies"
+        if [[ "$OS" == "Darwin" ]]; then
+            # Installing dependencies using Homebrew
+            brew install fzf bat ripgrep the_silver_searcher perl universal-ctags
+        elif [[ $OS == "Linux" ]]; then
+            # Installing for Debian
+            apt install -y fzf silversearcher-ag bat
+        fi
         echo "    - Installing vim plugins"
         ln -s $SCRIPT_PATH/$VIM_PATH/plugins.vim $HOME/.vim/plugins.vim
         ln -s $SCRIPT_PATH/$VIM_PATH/syntax $HOME/.vim/syntax

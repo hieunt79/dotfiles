@@ -193,6 +193,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && &filetype == 'ne
 " find - super effective command
 " Usage: if path and wildmenu is set, :find <file_name> will open the file for u, you can also add * to search query like :find ipt*
 noremap <leader>f :tabnew<CR>:vertical edit .<CR>:find·
+" If plugins is enable, we will use fzf
 
 " tabnew
 noremap <leader>tn :tabnew<CR>:vertical edit .<CR>
@@ -433,7 +434,7 @@ if exists('g:plugs')
     autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
     " :find
-    noremap <leader>f :tabnew<CR>:find 
+    noremap <leader>f :Files <cr>
     " tabnew
     noremap <leader>tn :tabnew<CR><C-W><C-W>
 
