@@ -266,6 +266,8 @@ set noautoindent               " Use spaces instead of tabs.
 autocmd FileType markdown setlocal tabstop=2 | setlocal shiftwidth=2 | setlocal softtabstop=2
 autocmd FileType * setlocal noautoindent " Fallback: disable all autoindent by vim filetype indent on
 
+au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+
 " There are a wonderful explaination for autoindent
 " https://stackoverflow.com/a/18671756
 " You can also check the last position that config some options by calling:
