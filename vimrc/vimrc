@@ -1,7 +1,8 @@
-"""-----------------------------------------------------------
-"""        Plugins
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        Plugins
+" ==============================================================================
+"
+
 silent! source ~/.vim/autoload/plug.vim
 silent! source ~/.vim/plugins.vim
 silent! source ~/.vim/syntax/*
@@ -11,10 +12,10 @@ silent! source ~/.vim/syntax/*
 set nocompatible
 
 
-"""-----------------------------------------------------------
-"""        keymap custom
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        Keymap custom
+" ==============================================================================
+"
 
 let mapleader = " "
 map , <Leader>
@@ -22,8 +23,9 @@ map , <Leader>
 vnoremap < <gv
 vnoremap > >gv
 
-inoremap jj <ESC>
+inoremap jj <Esc>
 inoremap kk <C-O>
+inoremap ,w <Esc>:w<cr>i
 
 noremap <Leader>w :w<cr>
 noremap <Leader>q :q<CR>
@@ -121,10 +123,10 @@ nnoremap <leader>c1 :%s/container_name/"container_name"/g<cr>:%s/countrynamesrc/
 vnoremap <leader>c2 :s/$/,/<cr>
 nnoremap <leader>c3 :%s/=/:/g<cr>
 
-"""-----------------------------------------------------------
-"""        Setting attributes
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        Setting attributes
+" ==============================================================================
+"
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -157,7 +159,7 @@ set incsearch                   " show search results as you type
 set showmatch                   " show matching brackets/parenthesis
 
 " Persistent undo
-" Don't forget mkdir folder $HOME/.local/share/nvim/undo
+" Don't forget mkdir folder $HOME/.local/share/vim/undo
 set undofile
 set undodir=$HOME/.local/share/vim/undo
 set undolevels=1000
@@ -204,10 +206,10 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"""-----------------------------------------------------------
-"""        Status line
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        Status line
+" ==============================================================================
+"
 
 " Hide by default
 set laststatus=1
@@ -216,10 +218,10 @@ set laststatus=1
 "set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
 set statusline=\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:%l/%L\ \ Column:%c\ \ Filetype:%{&filetype}\ \ %m%r%w\ %P
 
-"""-----------------------------------------------------------
-"""        indentation and tab relate
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        indentation and tab relate
+" ==============================================================================
+"
 
 " There're times that the below option makes me hard to control the indentation.
 " E.g: If filetype is c, it autoloads the cindent, and not obey my default
@@ -231,30 +233,39 @@ filetype indent on  " Load indent according to detected filetype.
 " Ref: https://stackoverflow.com/a/2159997
 set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
-" Disable paste for using supertab plugin
+set tabstop=4
+set softtabstop=4          " Tab key indents by 4 spaces.
+set shiftwidth=4           " >> indents by 4 spaces.
+set shiftround             " >> indents to next multiple of 'shiftwidth'.
+set expandtab              " Use spaces instead of tabs.
+
+set smarttab               " Be smart when using tabs ;)
+set autoindent             " Auto indent with tab
+set smartindent
+set copyindent             " Indent according to previous line.
+
+" ==============================================================================
+" CHEAT SHEET: PASTE MODE
+" ==============================================================================
+" * What it does: Disables auto-indent, formatting, and custom mappings (like jj).
+" * Why use it:   Prevents text pasted from outside Vim (system clipboard) from 
+"                 cascading into a chaotic, messy "staircase" format.
+" * The Golden Rule: Only turn it ON right before pasting. Turn it OFF 
+"                 immediately after, or your custom mappings will not work!
+"
+" Usage: Press <leader>p to toggle it on/off.
+" ==============================================================================
+
 function! TogglePasteMode()
-  if &paste && &autoindent
+  if &paste
     set nopaste
-    echo "Set nopaste: Paste mode OFF"
-
-    " set paste
-    set tabstop=4
-    set softtabstop=4          " Tab key indents by 4 spaces.
-    set shiftwidth=4          " >> indents by 4 spaces.
-    set shiftround              " >> indents to next multiple of 'shiftwidth'.
-    set expandtab               " Use spaces instead of tabs.
-
-    set smarttab                " Be smart when using tabs ;)
-    set autoindent              " Auto indent with tab
-    set smartindent
-    set copyindent              " Indent according to previous line.
-
+    echo "Paste mode: OFF"
   else
     set paste
-    set expandtab               " Use spaces instead of tabs.
-    echo "Set: paste mode ON"
+    echo "Paste mode: ON"
   endif
 endfunction
+
 nnoremap <leader>p :call TogglePasteMode()<CR>
 
 set paste
@@ -273,10 +284,10 @@ au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 " You can also check the last position that config some options by calling:
 " :verbose set autoindent?
 
-"""-----------------------------------------------------------
-"""        other config
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        Other Configs
+" ==============================================================================
+"
 
 " if files doesn't exist, gf creates new file at path under cursor
 " As suggest at
@@ -328,9 +339,10 @@ noremap <leader>FT :set filetype=
 "nnoremap j gj
 "nnoremap k gk
 
-"""-----------------------------------------------------------
-"""        Tab bar config
-"""-----------------------------------------------------------
+" ==============================================================================
+"        Tab bar Config
+" ==============================================================================
+"
 
 " showtabline=1 to show tabline only when more than one tab is present
 " showtabline=2 to always show tabline
@@ -409,10 +421,10 @@ function! MyTabLine() " acclamation to avoid conflict
     return s
 endfunction"
 
-"""-----------------------------------------------------------
-"""        for plugins config
-"""-----------------------------------------------------------
-"""
+" ==============================================================================
+"        Plugin Config
+" ==============================================================================
+"
 
 if exists('g:plugs')
     nnoremap <leader>tr :NERDTreeToggle<cr>
