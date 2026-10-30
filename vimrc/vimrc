@@ -482,6 +482,11 @@ if exists('g:plugs')
     nnoremap <leader>gd :Git diff<cr>
     nnoremap <leader>gg :GitGutter<cr>
 
+    " Glow.vim
+    " Use a different key mapping (example: <Leader>p)
+    nnoremap <Leader>Gp :Glowpop<CR>
+    nnoremap <Leader>Gs :Glowsplit<CR>
+
     set relativenumber
     set number
 

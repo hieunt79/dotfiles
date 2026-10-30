@@ -16,4 +16,5 @@ call plug#begin()
   Plug 'airblade/vim-gitgutter'
   Plug 'morhetz/gruvbox'
   Plug 'tomasiser/vim-code-dark'
+  Plug 'hieunt79/glow.vim'
 call plug#end()
