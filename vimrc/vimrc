@@ -234,7 +234,21 @@ filetype indent on  " Load indent according to detected filetype.
 
 " display indentation guides
 " Ref: https://stackoverflow.com/a/2159997
-set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+
+function! ToggleListChars()
+  if &list
+    " If they are currently visible, turn them off and reset to default
+    set nolist
+    set listchars&
+  else
+    " If they are hidden, set your custom characters and turn them on
+    set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+    set list
+  endif
+endfunction
+nnoremap <leader>lc :call ToggleListChars()<CR>
+
+"set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 
 set tabstop=4
 set softtabstop=4          " Tab key indents by 4 spaces.
