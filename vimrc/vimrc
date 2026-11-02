@@ -31,6 +31,9 @@ noremap <Leader>w :w<cr>
 noremap <Leader>q :q<CR>
 noremap <Leader>x :x<CR>
 
+" create new path if it doesnt exist yet
+nnoremap <leader>mk :!mkdir -p %:h<CR><CR>:echo "Path is created"<CR>
+
 "" set adaptive toggle number
 set nonumber
 set norelativenumber
@@ -244,6 +247,9 @@ set autoindent             " Auto indent with tab
 set smartindent
 set copyindent             " Indent according to previous line.
 
+set paste
+set expandtab               " Use spaces instead of tabs.
+
 " ==============================================================================
 " CHEAT SHEET: PASTE MODE
 " ==============================================================================
@@ -267,10 +273,6 @@ function! TogglePasteMode()
 endfunction
 
 nnoremap <leader>p :call TogglePasteMode()<CR>
-
-set paste
-set expandtab               " Use spaces instead of tabs.
-set noautoindent               " Use spaces instead of tabs.
 
 "autocmd BufRead,BufNewFile *.c,*.h setlocal cindent
 "autocmd FileType c setlocal autoindent | setlocal noexpandtab
@@ -504,4 +506,3 @@ if exists('g:plugs')
 else
     colorscheme morning
 endif
-

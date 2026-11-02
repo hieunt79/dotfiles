@@ -13,6 +13,8 @@ alias dotbackup="~/03-scripts/dotbackup.sh"
 
 alias bat="batcat --theme=gruvbox-light"
 
+alias trans="trans -shell :vi"
+
 # Easier navigation: .., ..., ...., ~
 alias ..="cd .."
 alias ...="cd ../.."
