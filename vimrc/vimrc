@@ -83,6 +83,19 @@ endfunction
 
 nnoremap <leader>v :call ToggleVisualMode()<CR>
 
+function! ToggleScrollBind()
+  if &scrollbind
+    windo set noscrollbind
+    echo "Scrollbind: OFF"
+  else
+    windo set scrollbind
+    set scrollopt=ver,hor,jump
+    echo "Scrollbind: ON"
+  endif
+endfunction
+
+nnoremap <leader>sb :call ToggleScrollBind()<CR>
+
 " set wrap on the fly
 set wrap    " set wrap on the fly
 nnoremap <expr> <leader>s &wrap =~ '1' ? ':set nowrap<cr>' : ':set wrap<cr>'
@@ -140,10 +153,15 @@ colorscheme default
 set showmode                " Show current mode in command-line.
 set showcmd                 " Show already typed keys when more are expected.
 
-set splitbelow              " Open new windows below the current window.
+"set splitbelow              " Open new windows below the current window.
 set splitright              " Open new windows right of the current window.
 
 set ruler                   " show cursor position
+set linebreak               " dont get words split in two
+set breakindent
+let &showbreak=' '
+
+"set colorcolumn=80
 
 set magic                   " For regular expressions turn magic on
 
@@ -263,6 +281,10 @@ set copyindent             " Indent according to previous line.
 
 set paste
 set expandtab               " Use spaces instead of tabs.
+
+"set nopaste
+"set textwidth=80
+"set formatoptions+=t
 
 " ==============================================================================
 " CHEAT SHEET: PASTE MODE
@@ -489,19 +511,22 @@ if exists('g:plugs')
     "set background=dark   " for dark ver of gruvbox
     set background=light   " for light ver of gruvbox
 
-    nnoremap <leader>gb :Git blame<cr>
-    nnoremap <leader>gs :Git <cr>
-    nnoremap <leader>gc :Git commit -v<cr>
-    nnoremap <leader>ga :Git add -p<cr>
-    nnoremap <leader>gm :Git commit --amend<cr>
-    nnoremap <leader>gp :Git push<cr>
+    "nnoremap <leader>gb :Git blame<cr>
+    "nnoremap <leader>gs :Git <cr>
+    "nnoremap <leader>gc :Git commit -v<cr>
+    "nnoremap <leader>ga :Git add -p<cr>
+    "nnoremap <leader>gm :Git commit --amend<cr>
+    "nnoremap <leader>gp :Git push<cr>
     nnoremap <leader>gd :Git diff<cr>
     nnoremap <leader>gg :GitGutter<cr>
 
     " Glow.vim
     " Use a different key mapping (example: <Leader>p)
-    nnoremap <Leader>Gp :Glowpop<CR>
-    nnoremap <Leader>Gs :Glowsplit<CR>
+    nnoremap <Leader>gr :Glowrefresh<CR>
+    nnoremap <Leader>gp :Glowpop<CR>
+    nnoremap <Leader>gs :Glowsplit<CR>
+    let g:glow_refresh_map = '<leader>gr'
+    let g:glow_autoreload = 1
 
     set relativenumber
     set number
