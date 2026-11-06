@@ -28,6 +28,7 @@ function main {
 
     install_vim $DEV_ENABLE
     install_aliases
+    install_tmux $DEV_ENABLE
     install_less
     install_zsh $DEV_ENABLE
     install_alacritty $GRAPHIC_ENABLE
@@ -75,18 +76,20 @@ function install_vim {
     fi
 }
 
-#function install_byobu_color {
-#    # install aliases
-#    if [ -f "$HOME/.byobu" ]; then
-#        rm -f $HOME/.aliases.old
-#        mv $HOME/.aliases $HOME/.aliases.old
-#        ln -s $SCRIPT_PATH/.aliases $HOME/.aliases
-#    else
-#        rm -f $HOME/.aliases
-#        ln -s $SCRIPT_PATH/.aliases $HOME/.aliases
-#    fi
-#
-#}
+function install_tmux {
+    DEV_ENABLE=$1
+    if [[ $DEV_ENABLE == "true" ]]; then
+        echo "    - Installing tmux config"
+        if [ -f "$HOME/.tmux.conf" ]; then
+            echo "    - Cleaning tmux config"
+            rm -f $HOME/.tmux.conf.old
+            mv $HOME/.tmux.conf $HOME/.tmux.conf.old
+        fi
+        echo "    - Create soft link tmux config"
+        TMUX_PATH="tmux"
+        ln -s $SCRIPT_PATH/$TMUX_PATH/.tmux.conf $HOME/.tmux.conf
+    fi
+}
 
 function install_aliases {
     echo "Installing aliases"
